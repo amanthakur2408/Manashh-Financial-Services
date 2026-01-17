@@ -93,11 +93,29 @@
 
 
 <!-- CONTACT -->
-<section id="contact" class="section">
+<section id="contact" class="section contact-section">
   <h2>Contact Us</h2>
-  <p><strong>Phone / WhatsApp:</strong> 9768187027</p>
-  <p><strong>Email:</strong> manashhfinancialservices@gmail.com</p>
+  <p class="contact-subtext">
+    Get in touch with us for personalized financial guidance.
+  </p>
+
+  <form class="contact-form"
+        action="https://formsubmit.co/manashhfinancialservices@gmail.com"
+        method="POST">
+
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="tel" name="phone" placeholder="Your Phone Number" required>
+    <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+
+    <!-- FormSubmit settings -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="New Enquiry - Manashh Financial Services">
+
+    <button type="submit">Send Message</button>
+  </form>
 </section>
+
 
 <footer>
   © 2026 Manashh Financial Services. All Rights Reserved.
@@ -105,5 +123,6 @@
 
 </body>
 </html>
+
 
 
