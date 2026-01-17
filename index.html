@@ -99,22 +99,33 @@
     Get in touch with us for personalized financial guidance.
   </p>
 
-  <form class="contact-form"
-        action="https://formsubmit.co/manashhfinancialservices@gmail.com"
-        method="POST">
+  <div class="contact-container">
 
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <input type="tel" name="phone" placeholder="Your Phone Number" required>
-    <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+    <!-- IMAGE -->
+    <div class="contact-image">
+      <img src="images/contact.jpg" alt="Contact Manashh Financial Services">
+    </div>
 
-    <!-- FormSubmit settings -->
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_subject" value="New Enquiry - Manashh Financial Services">
+    <!-- FORM -->
+    <form class="contact-form"
+          action="https://formsubmit.co/manashhfinancialservices@gmail.com"
+          method="POST">
 
-    <button type="submit">Send Message</button>
-  </form>
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="tel" name="phone" placeholder="Your Phone Number" required>
+      <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+
+      <!-- FormSubmit config -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="New Enquiry - Manashh Financial Services">
+
+      <button type="submit">Send Message</button>
+    </form>
+
+  </div>
 </section>
+
 
 
 <footer>
@@ -123,6 +134,7 @@
 
 </body>
 </html>
+
 
 
 
