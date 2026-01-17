@@ -49,10 +49,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #0b3c5d;
+  background: linear-gradient(135deg, #0b3c5d, #0e517a);
   color: #ffffff;
   text-align: center;
 }
+
 
 .hero h1 {
   font-size: 42px;
@@ -195,6 +196,24 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+.hero-btn {
+  margin-top: 30px;
+  padding: 14px 34px;
+  background: #ffffff;
+  color: #0b3c5d;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  background: #f0f0f0;
+}
+
+
 
 
 
