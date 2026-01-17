@@ -207,8 +207,10 @@ body {
   width: 100%;
   height: 320px;
   object-fit: cover;
+  object-position: center top; /* 👈 shows face */
   border-radius: 12px;
 }
+
 
 .contact-form {
   display: flex;
@@ -274,3 +276,4 @@ footer {
     height: 240px;
   }
 }
+
