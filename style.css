@@ -27,9 +27,11 @@ body {
 /* ===============================
    HEADER / NAVBAR – FINAL
 ================================ */
+/* HEADER / NAVBAR – FIXED */
 .navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* 🔑 this pushes sides apart */
   padding: 16px 50px;
   background: #ffffff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
@@ -38,47 +40,22 @@ body {
   z-index: 1000;
 }
 
-/* LOGO */
+/* LOGO LEFT */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
 .nav-left img {
   height: 64px;
   width: auto;
 }
 
-/* NAV LINKS RIGHT */
+/* MENU RIGHT */
 .nav-right {
-  margin-left: auto;     /* 🔑 pushes menu to right */
   display: flex;
+  align-items: center;
   gap: 30px;
-}
-
-/* LINKS */
-.nav-right a {
-  text-decoration: none;
-  color: #333;
-  font-size: 15px;
-  font-weight: 500;
-  position: relative;
-}
-
-/* HOVER UNDERLINE */
-.nav-right a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0;
-  height: 2px;
-  background: #0b3c5d;
-  transition: width 0.3s ease;
-}
-
-.nav-right a:hover::after {
-  width: 100%;
-}
-
-.nav-right a:hover,
-.nav-right a:visited {
-  color: #333;
 }
 
 /* MOBILE */
@@ -382,3 +359,4 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
