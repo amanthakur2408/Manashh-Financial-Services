@@ -1,72 +1,31 @@
-/* NAVBAR */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+/* ===============================
+   RESET & GLOBAL
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.nav-container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* BRAND */
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.brand img {
-  width: 42px;
-  height: auto;
-}
-
-.brand span {
-  font-size: 18px;
-  font-weight: 600;
-  color: #0b3c5d;
-}
-
-/* LINKS */
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  font-weight: 500;
-  color: #333;
-}
-
-.nav-links a:hover {
-  color: #0b3c5d;
-}
-
-/* SMOOTH SCROLL */
 html {
   scroll-behavior: smooth;
 }
 
-/* PAGE BREAK EFFECT */
-.section-light {
-  background: #ffffff;
-}
-
-.section-grey {
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
   background: #f6f8fb;
-  border-top: 1px solid #e5e9f0;
+  color: #333;
+  line-height: 1.7;
 }
 
-/* SPACE BETWEEN SECTIONS */
-section {
-  scroll-margin-top: 90px; /* avoids navbar overlap */
+/* GLOBAL IMAGE FIX */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
+
+/* ===============================
+   NAVBAR
+================================ */
+.navbar {
