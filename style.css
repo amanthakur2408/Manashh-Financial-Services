@@ -34,10 +34,13 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
+/* HEADER LOGO – FINAL SIZE */
 .nav-left img {
-  height: 52px;   /* 🔥 ideal size */
+  height: 64px;     /* 👈 ideal professional size */
   width: auto;
+  max-height: none;
 }
+
 
 
 .nav-right {
@@ -362,6 +365,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
