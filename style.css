@@ -12,27 +12,19 @@ html {
 }
 
 body {
-  margin: 0;                 /* 🔥 THIS IS THE FIX */
   font-family: Arial, sans-serif;
   background: #f6f8fb;
   color: #333;
 }
 
-
 /* =========================
-   HEADER / NAVBAR
+   HEADER / NAVBAR (FINAL)
 ========================= */
-/* HEADER STRUCTURE */
-./* HEADER / NAVBAR */
-/* ===============================
-   HEADER / NAVBAR – FINAL
-================================ */
-/* HEADER / NAVBAR – FIXED */
 .navbar {
   display: flex;
+  justify-content: space-between; /* 🔑 FIX */
   align-items: center;
-  justify-content: space-between; /* 🔑 this pushes sides apart */
-  padding: 16px 50px;
+  padding: 18px 60px;
   background: #ffffff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   position: sticky;
@@ -47,7 +39,7 @@ body {
 }
 
 .nav-left img {
-  height: 64px;
+  height: 70px;      /* BIG LOGO */
   width: auto;
 }
 
@@ -55,39 +47,50 @@ body {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 32px;
 }
 
-/* MOBILE */
-@media (max-width: 900px) {
-  .nav-left img {
-    height: 54px;
-  }
-
-  .nav-right {
-    gap: 18px;
-  }
+.nav-right a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  position: relative;
 }
 
+/* UNDERLINE EFFECT */
+.nav-right a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #0b3c5d;
+  transition: width 0.3s ease;
+}
+
+.nav-right a:hover::after {
+  width: 100%;
+}
+
+.nav-right a:hover {
+  color: #0b3c5d;
+}
 
 /* =========================
    HERO
 ========================= */
 .hero {
-  height: calc(100vh - 70px); /* adjust for navbar height */
+  height: calc(100vh - 90px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   background: linear-gradient(135deg, #0b3c5d, #0e517a);
   color: #ffffff;
   text-align: center;
-
-  margin-top: 0;
-  padding-top: 0;
 }
-
 
 .hero h1 {
   font-size: 42px;
@@ -100,7 +103,7 @@ body {
 
 .hero-btn {
   margin-top: 30px;
-  padding: 14px 34px;
+  padding: 14px 36px;
   background: #ffffff;
   color: #0b3c5d;
   text-decoration: none;
@@ -113,7 +116,7 @@ body {
 }
 
 /* =========================
-   SECTIONS (GLOBAL)
+   SECTIONS
 ========================= */
 .section {
   padding: 80px 20px;
@@ -166,15 +169,14 @@ body {
 
 .service-box {
   background: #ffffff;
-  padding: 20px;
+  padding: 22px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  text-align: center;
 }
 
 .service-box img {
   width: 100%;
-  height: 120px;
+  height: 130px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 15px;
@@ -182,24 +184,43 @@ body {
 
 .service-box h3 {
   font-size: 18px;
-  margin-bottom: 8px;
   color: #0b3c5d;
+  margin-bottom: 8px;
 }
 
 .service-box p {
   font-size: 14.5px;
-  line-height: 1.6;
   color: #555;
+  line-height: 1.6;
+}
+
+/* =========================
+   WHY CHOOSE US
+========================= */
+.why-grid {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.why-box {
+  background: #ffffff;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.why-icon {
+  font-size: 34px;
+  margin-bottom: 15px;
+  display: block;
 }
 
 /* =========================
    CONTACT
 ========================= */
-.contact-subtext {
-  margin-bottom: 40px;
-  color: #555;
-}
-
 .contact-container {
   max-width: 1100px;
   margin: auto;
@@ -213,10 +234,9 @@ body {
   width: 100%;
   height: 320px;
   object-fit: cover;
-  object-position: center top; /* 👈 shows face */
+  object-position: center top;
   border-radius: 12px;
 }
-
 
 .contact-form {
   display: flex;
@@ -230,11 +250,9 @@ body {
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 15px;
-  width: 100%;
 }
 
 .contact-form button {
-  margin-top: 10px;
   padding: 14px 36px;
   background: #0b3c5d;
   color: #ffffff;
@@ -262,27 +280,8 @@ footer {
 }
 
 /* =========================
-   MOBILE
+   WHATSAPP FLOAT
 ========================= */
-@media (max-width: 900px) {
-  .about-container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .services {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-container {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-image img {
-    height: 240px;
-  }
-}
-/* WHATSAPP FLOATING BUTTON – FIXED */
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
@@ -298,65 +297,34 @@ footer {
   z-index: 2000;
 }
 
-/* FORCE IMAGE SIZE */
 .whatsapp-float img {
   width: 26px;
   height: 26px;
-  max-width: 26px;
-  max-height: 26px;
-  display: block;
 }
 
-/* WHY CHOOSE US */
-.why-section {
-  background: #f6f8fb;
-}
-
-.why-subtext {
-  max-width: 800px;
-  margin: 0 auto 50px;
-  color: #555;
-  font-size: 16px;
-}
-
-.why-grid {
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-}
-
-.why-box {
-  background: #ffffff;
-  padding: 30px 20px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  text-align: center;
-}
-
-.why-icon {
-  font-size: 34px;
-  display: block;
-  margin-bottom: 15px;
-}
-
-.why-box h3 {
-  font-size: 17px;
-  margin-bottom: 10px;
-  color: #0b3c5d;
-}
-
-.why-box p {
-  font-size: 14.5px;
-  line-height: 1.6;
-  color: #555;
-}
-
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 @media (max-width: 900px) {
+  .about-container,
+  .contact-container {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+  }
+
   .why-grid {
     grid-template-columns: 1fr;
   }
-}
 
+  .navbar {
+    padding: 14px 25px;
+  }
+
+  .nav-left img {
+    height: 58px;
+  }
+}
