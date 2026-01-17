@@ -1,20 +1,170 @@
-<section class="services">
-  <h2>Our Services</h2>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <div class="services-grid">
-    <div class="card">
-      <h3>Investment Planning</h3>
-      <p>Goal-based investment strategies including mutual funds and long-term wealth creation.</p>
-    </div>
+/* BODY */
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: #f6f8fb;
+  color: #333;
+  line-height: 1.7;
+}
 
-    <div class="card">
-      <h3>Insurance Planning</h3>
-      <p>Life, health and general insurance solutions to secure you and your family.</p>
-    </div>
+/* HERO */
+header {
+  background: linear-gradient(135deg, #0b3c5d, #164a7a);
+  color: #ffffff;
+  text-align: center;
+  padding: 90px 20px;
+}
 
-    <div class="card">
-      <h3>Financial Planning</h3>
-      <p>Personalized financial roadmaps for savings, retirement and future goals.</p>
-    </div>
-  </div>
-</section>
+.logo {
+  max-width: 130px;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 38px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+header p {
+  font-size: 18px;
+  opacity: 0.95;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 36px;
+  background: #25d366;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* SECTIONS */
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 80px 20px;
+}
+
+section h2 {
+  text-align: center;
+  font-size: 32px;
+  color: #0b3c5d;
+  margin-bottom: 35px;
+  font-weight: 600;
+}
+
+/* ABOUT */
+.about p {
+  max-width: 850px;
+  margin: auto;
+  text-align: center;
+  font-size: 17px;
+  color: #444;
+}
+
+/* SERVICES */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+}
+
+.card {
+  background: #ffffff;
+  padding: 36px 30px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+  font-size: 22px;
+  color: #164a7a;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.card p {
+  font-size: 15.5px;
+  color: #555;
+}
+
+/* CONTACT */
+.contact {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 70px 25px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  max-width: 600px;
+  margin: auto;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+form textarea {
+  height: 120px;
+}
+
+form button {
+  width: 100%;
+  background: #0b3c5d;
+  color: #ffffff;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* CONTACT INFO */
+.contact-info {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0b3c5d;
+}
+
+/* FOOTER */
+footer {
+  background: #0b3c5d;
+  color: #ffffff;
+  text-align: center;
+  padding: 22px;
+  font-size: 14px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 30px;
+  }
+
+  section h2 {
+    font-size: 26px;
+  }
+}
