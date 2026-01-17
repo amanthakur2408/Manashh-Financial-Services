@@ -93,6 +93,16 @@ body {
     height: 54px;
   }
 }
+/* REMOVE DEFAULT LINK STYLING IN HEADER */
+.nav-center a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+}
+.nav-center a:hover {
+  color: #0b3c5d;
+}
 
 /* =========================
    HERO
@@ -383,6 +393,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
