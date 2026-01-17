@@ -279,6 +279,72 @@ footer {
   background: #0e517a;
 }
 
+/* CONTACT SECTION */
+.contact-section {
+  background: #ffffff;
+}
+
+.contact-subtext {
+  margin-bottom: 40px;
+  color: #555;
+}
+
+/* LAYOUT */
+.contact-container {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* IMAGE */
+.contact-image img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* FORM */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.contact-form button {
+  padding: 14px;
+  background: #0b3c5d;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.contact-form button:hover {
+  background: #0e517a;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
 
 
 
