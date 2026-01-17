@@ -301,4 +301,56 @@ footer {
   display: block;
 }
 
+/* WHY CHOOSE US */
+.why-section {
+  background: #f6f8fb;
+}
+
+.why-subtext {
+  max-width: 800px;
+  margin: 0 auto 50px;
+  color: #555;
+  font-size: 16px;
+}
+
+.why-grid {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.why-box {
+  background: #ffffff;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.why-icon {
+  font-size: 34px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.why-box h3 {
+  font-size: 17px;
+  margin-bottom: 10px;
+  color: #0b3c5d;
+}
+
+.why-box p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
