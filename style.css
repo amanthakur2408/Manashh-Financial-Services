@@ -1,146 +1,72 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* NAVBAR */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #f6f8fb;
-  color: #333;
-  line-height: 1.7;
-}
-
-/* HERO */
-.hero {
-  background: url("images/hero.jpg") center/cover no-repeat;
-  height: 85vh;
-  position: relative;
-}
-
-.hero .overlay {
-  background: rgba(11,60,93,0.75);
-  height: 100%;
-  text-align: center;
-  color: #fff;
-  padding-top: 120px;
-}
-
-.logo {
-  width: 140px;
-  margin-bottom: 20px;
-}
-
-.hero h1 {
-  font-size: 42px;
-}
-
-.hero p {
-  font-size: 18px;
-  margin: 10px 0;
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 14px 34px;
-  background: #25d366;
-  color: #fff;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-/* SECTIONS */
-section {
-  padding: 90px 20px;
+.nav-container {
   max-width: 1200px;
   margin: auto;
-}
-
-h2 {
-  text-align: center;
-  font-size: 32px;
-  color: #0b3c5d;
-  margin-bottom: 40px;
-}
-
-/* ABOUT */
-.about .content,
-.contact .content {
+  padding: 12px 20px;
   display: flex;
-  gap: 50px;
   align-items: center;
+  justify-content: space-between;
 }
 
-.about img,
-.contact img {
-  width: 100%;
-  border-radius: 16px;
+/* BRAND */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* SERVICES */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-  gap: 30px;
+.brand img {
+  width: 42px;
+  height: auto;
 }
 
-.service-card {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-  overflow: hidden;
-  text-align: center;
+.brand span {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0b3c5d;
 }
 
-.service-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.service-card h3 {
-  margin: 20px 0 10px;
-  color: #164a7a;
-}
-
-.service-card p {
-  padding: 0 20px 25px;
-}
-
-/* PROCESS */
-.process-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+/* LINKS */
+.nav-links {
+  list-style: none;
+  display: flex;
   gap: 25px;
 }
 
-.step {
-  background: #fff;
-  padding: 35px;
-  border-radius: 16px;
-  text-align: center;
+.nav-links a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
 }
 
-.step span {
-  font-size: 32px;
-  color: #164a7a;
-  font-weight: bold;
+.nav-links a:hover {
+  color: #0b3c5d;
 }
 
-/* TRUST */
-.trust {
-  background: #0b3c5d;
-  color: #fff;
-  text-align: center;
-  border-radius: 20px;
+/* SMOOTH SCROLL */
+html {
+  scroll-behavior: smooth;
 }
 
-/* CONTACT */
-.form-box {
-  flex: 1;
+/* PAGE BREAK EFFECT */
+.section-light {
+  background: #ffffff;
 }
 
-form input,
-for
+.section-grey {
+  background: #f6f8fb;
+  border-top: 1px solid #e5e9f0;
+}
+
+/* SPACE BETWEEN SECTIONS */
+section {
+  scroll-margin-top: 90px; /* avoids navbar overlap */
+}
