@@ -24,9 +24,11 @@ body {
 ========================= */
 /* HEADER STRUCTURE */
 ./* HEADER / NAVBAR */
+/* ===============================
+   HEADER / NAVBAR – FINAL
+================================ */
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 16px 50px;
   background: #ffffff;
@@ -42,12 +44,14 @@ body {
   width: auto;
 }
 
-/* NAV LINKS */
+/* NAV LINKS RIGHT */
 .nav-right {
+  margin-left: auto;     /* 🔑 pushes menu to right */
   display: flex;
   gap: 30px;
 }
 
+/* LINKS */
 .nav-right a {
   text-decoration: none;
   color: #333;
@@ -79,12 +83,12 @@ body {
 
 /* MOBILE */
 @media (max-width: 900px) {
-  .nav-right {
-    gap: 18px;
-  }
-
   .nav-left img {
     height: 54px;
+  }
+
+  .nav-right {
+    gap: 18px;
   }
 }
 
@@ -378,6 +382,7 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
