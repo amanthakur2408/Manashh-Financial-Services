@@ -1,3 +1,10 @@
+/* FORCE LOGO SIZE FIX */
+.logo {
+  max-width: 120px !important;
+  height: auto !important;
+  display: block;
+  margin: 0 auto 20px;
+}
 body {
   background: red !important;
 }
@@ -32,4 +39,5 @@ img {
    NAVBAR
 ================================ */
 .navbar {
+
 
