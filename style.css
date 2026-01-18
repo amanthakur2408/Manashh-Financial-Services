@@ -166,6 +166,20 @@ body {
   font-size: 15px;
   color: rgba(255,255,255,0.8);
 }
+.hero-trust {
+  margin-top: 30px;
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  font-size: 15px;
+  color: #e6f1f8;
+  flex-wrap: wrap;
+}
+
+.hero-trust span {
+  opacity: 0.95;
+}
+
 
 /* Mobile */
 @media (max-width: 900px) {
@@ -392,6 +406,7 @@ footer {
     height: 58px;
   }
 }
+
 
 
 
