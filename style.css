@@ -150,6 +150,12 @@ body {
   max-width: 420px;
 }
 
+.hero-trust {
+  margin-top: 18px;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
 /* Mobile */
 @media (max-width: 900px) {
   .hero-container {
@@ -375,4 +381,5 @@ footer {
     height: 58px;
   }
 }
+
 
