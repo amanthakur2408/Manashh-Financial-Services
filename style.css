@@ -135,14 +135,17 @@ body {
   color: #ffffff;
 }
 
-.hero-text h1 {
-  font-size: 44px;
+..hero-text h1 {
+  font-size: 46px;
+  font-weight: 700;
   margin-bottom: 12px;
+  color: #ffffff;
 }
 
 .hero-text p {
   font-size: 18px;
-  opacity: 0.9;
+  margin-bottom: 22px;
+  color: rgba(255,255,255,0.9);
 }
 
 .hero-image img {
@@ -151,9 +154,9 @@ body {
 }
 
 .hero-trust {
-  margin-top: 18px;
-  font-size: 14px;
-  opacity: 0.85;
+  margin-top: 20px;
+  font-size: 15px;
+  color: rgba(255,255,255,0.8);
 }
 
 /* Mobile */
@@ -381,5 +384,6 @@ footer {
     height: 58px;
   }
 }
+
 
 
