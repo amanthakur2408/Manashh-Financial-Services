@@ -102,18 +102,23 @@ body {
 }
 
 .hero-btn {
-  margin-top: 30px;
+  margin-top: 10px;
   padding: 14px 36px;
   background: #ffffff;
   color: #0b3c5d;
   text-decoration: none;
   border-radius: 30px;
   font-weight: 600;
+  display: inline-block;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
 }
 
 .hero-btn:hover {
-  background: #f0f0f0;
+  transform: translateY(-2px);
+  background: #f2f2f2;
 }
+
 .hero {
   min-height: calc(100vh - 80px);
   background: linear-gradient(135deg, #0b3c5d, #0e517a);
@@ -384,6 +389,7 @@ footer {
     height: 58px;
   }
 }
+
 
 
 
