@@ -82,46 +82,8 @@ body {
    HERO
 ========================= */
 .hero {
-  height: calc(100vh - 90px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background: linear-gradient(135deg, #0b3c5d, #0e517a);
-  color: #ffffff;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: 42px;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 18px;
-}
-
-.hero-btn {
-  margin-top: 10px;
-  padding: 14px 36px;
-  background: #ffffff;
-  color: #0b3c5d;
-  text-decoration: none;
-  border-radius: 30px;
-  font-weight: 600;
-  display: inline-block;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  transition: all 0.3s ease;
-}
-
-.hero-btn:hover {
-  transform: translateY(-2px);
-  background: #f2f2f2;
-}
-
-.hero {
-  background: linear-gradient(135deg, #0b3c5d, #0e517a);
-  padding: 80px 40px;
+  padding: 90px 40px;
   color: #ffffff;
 }
 
@@ -131,48 +93,53 @@ body {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   align-items: center;
-  gap: 40px;
+  gap: 50px;
 }
 
+/* TEXT */
 .hero-text h1 {
   font-size: 44px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .hero-subtitle {
   font-size: 18px;
   opacity: 0.9;
+  margin-bottom: 25px;
 }
 
+/* BUTTON */
 .hero-btn {
   display: inline-block;
-  margin: 30px 0 20px;
-  padding: 14px 36px;
+  padding: 14px 38px;
   background: #ffffff;
   color: #0b3c5d;
   border-radius: 30px;
   font-weight: 600;
   text-decoration: none;
+  margin-bottom: 25px; /* 🔑 spacing fix */
 }
 
+/* TAGLINE */
 .hero-tagline {
-  margin-top: 15px;
-  font-size: 15px;
-  opacity: 0.9;
-}
-
-.hero-trust {
-  margin-top: 25px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  font-size: 14.5px;
+  font-size: 16px;
+  margin-bottom: 25px; /* 🔑 spacing fix */
   opacity: 0.95;
 }
 
+/* TRUST POINTS */
+.hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 30px;
+  font-size: 14.5px;
+}
+
+/* IMAGE */
 .hero-image img {
   width: 100%;
   max-width: 420px;
+  display: block;
 }
 
 /* MOBILE */
@@ -183,14 +150,13 @@ body {
   }
 
   .hero-image img {
-    margin: auto;
+    margin: 40px auto 0;
   }
 
   .hero-trust {
     justify-content: center;
   }
 }
-
 
 /* =========================
    SECTIONS
@@ -405,6 +371,7 @@ footer {
     height: 58px;
   }
 }
+
 
 
 
