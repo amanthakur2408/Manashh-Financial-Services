@@ -51,3 +51,12 @@
   border-radius: 30px;
   cursor: pointer;
 }
+
+.pie {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: conic-gradient(#e1e7ec 0deg, #e1e7ec 360deg);
+  margin: auto;
+}
+
