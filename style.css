@@ -372,4 +372,17 @@ footer {
     height: 58px;
   }
 }
+/* CONTACT SECTION SPACING FIX */
+#contact h2 {
+  margin-bottom: 16px;   /* space below heading */
+}
+
+.contact-subtext {
+  margin-top: 10px;
+  margin-bottom: 60px;  /* space before form & image */
+  font-size: 16px;
+  color: #555;
+}
+
+
 
