@@ -1,14 +1,8 @@
-/* =========================
-   RESET
-========================= */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
@@ -17,18 +11,7 @@ body {
   color: #333;
 }
 
-/* =========================
-   GLOBAL IMAGE SAFETY
-========================= */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* =========================
-   NAVBAR
-========================= */
+/* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -36,36 +19,28 @@ img {
   padding: 18px 60px;
   background: #ffffff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
 
 .nav-left img {
   height: 70px;
-  width: auto;
 }
 
 .nav-right {
   display: flex;
-  gap: 32px;
+  gap: 30px;
 }
 
 .nav-right a {
   text-decoration: none;
-  font-size: 16px;
-  font-weight: 500;
   color: #333;
-  position: relative;
+  font-weight: 500;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 .hero {
   background: linear-gradient(135deg, #0b3c5d, #0e517a);
+  color: white;
   padding: 90px 40px;
-  color: #ffffff;
 }
 
 .hero-container {
@@ -73,80 +48,50 @@ img {
   margin: auto;
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 50px;
+  gap: 40px;
   align-items: center;
 }
 
-.hero-text h1 {
-  font-size: 44px;
-  margin-bottom: 12px;
-}
-
-.hero-subtitle {
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
 .hero-btn {
-  padding: 14px 36px;
+  padding: 14px 34px;
   border-radius: 30px;
   font-weight: 600;
   text-decoration: none;
 }
 
 .primary-btn {
-  background: #ffffff;
+  background: white;
   color: #0b3c5d;
 }
 
 .secondary-btn {
-  border: 2px solid #ffffff;
-  color: #ffffff;
+  border: 2px solid white;
+  color: white;
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* SECTIONS */
 .section {
   padding: 80px 20px;
   text-align: center;
 }
 
-.section h2 {
-  font-size: 30px;
-  margin-bottom: 20px;
-  color: #0b3c5d;
+.grey {
+  background: #ffffff;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 footer {
   background: #0b3c5d;
-  color: #ffffff;
+  color: white;
   text-align: center;
   padding: 20px;
-  font-size: 14px;
 }
 
-/* =========================
-   WHATSAPP
-========================= */
+/* WHATSAPP */
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
   right: 20px;
   width: 55px;
   height: 55px;
-  background: #25d366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
