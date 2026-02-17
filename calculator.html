@@ -160,7 +160,7 @@ p {
 }
 
 /* =====================
-   FOOTER NOTE
+   NOTE
 ===================== */
 .note {
   margin-top: 20px;
@@ -182,7 +182,7 @@ p {
 </style>
 </head>
 
-<body>
+<body class="calculator-page">
 
 <div class="container">
   <a href="index.html">← Back to Home</a>
@@ -235,45 +235,48 @@ p {
 <script>
 let mode = "sip";
 
-/* =====================
-   LEAD VALIDATION
-===================== */
+const leadName = document.getElementById("leadName");
+const leadEmail = document.getElementById("leadEmail");
+const leadPhone = document.getElementById("leadPhone");
+const leadForm = document.getElementById("leadForm");
+const calculator = document.getElementById("calculator");
+
+const amount = document.getElementById("amount");
+const years = document.getElementById("years");
+const rate = document.getElementById("rate");
+
+const invested = document.getElementById("invested");
+const returns = document.getElementById("returns");
+const corpus = document.getElementById("corpus");
+const pie = document.getElementById("pie");
+
+const sipBtn = document.getElementById("sipBtn");
+const lumpBtn = document.getElementById("lumpBtn");
+
+/* LEAD VALIDATION */
 function validateLead() {
   const phoneRegex = /^[6-9]\d{9}$/;
-
-  if (
-    !leadName.value.trim() ||
-    !leadEmail.value.trim() ||
-    !phoneRegex.test(leadPhone.value)
-  ) {
+  if (!leadName.value || !leadEmail.value || !phoneRegex.test(leadPhone.value)) {
     alert("Enter valid Name, Email & 10-digit Mobile Number");
     return;
   }
-
   leadForm.style.display = "none";
   calculator.style.display = "block";
 }
 
-/* =====================
-   SWITCH SIP / LUMPSUM
-===================== */
+/* SWITCH MODE */
 function selectType(type) {
   mode = type;
   sipBtn.classList.remove("active");
   lumpBtn.classList.remove("active");
   document.getElementById(type + "Btn").classList.add("active");
 
-  // Clear inputs & results
-  amount.value = "";
-  years.value = "";
-  rate.value = "";
+  amount.value = years.value = rate.value = "";
   invested.innerText = returns.innerText = corpus.innerText = "0";
   pie.style.background = "conic-gradient(#e1e7ec 0deg, #e1e7ec 360deg)";
 }
 
-/* =====================
-   CALCULATION
-===================== */
+/* CALCULATION */
 function calculate() {
   const P = +amount.value;
   const r = +rate.value / 100 / 12;
@@ -300,8 +303,9 @@ function calculate() {
   returns.innerText = Math.round(returnsAmt).toLocaleString();
   corpus.innerText = Math.round(corpusAmt).toLocaleString();
 
-  const investPercent = (investedAmt / corpusAmt) * 360;
-  pie.style.background = `conic-gradient(#0b3c5d 0deg ${investPercent}deg, #e1e7ec ${investPercent}deg 360deg)`;
+  const investDeg = (investedAmt / corpusAmt) * 360;
+  pie.style.background =
+    `conic-gradient(#0b3c5d 0deg ${investDeg}deg, #e1e7ec ${investDeg}deg 360deg)`;
 }
 </script>
 
