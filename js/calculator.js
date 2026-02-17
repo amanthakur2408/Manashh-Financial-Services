@@ -1,42 +1,59 @@
-function unlockCalculator() {
-  const name = document.getElementById("userName").value;
-  const phone = document.getElementById("userPhone").value;
+let mode = "sip";
 
-  if (name === "" || phone === "") {
-    alert("Please enter name and phone number");
-    return;
-  }
-
-  document.querySelector(".lead-box").classList.add("hidden");
-  document.getElementById("calculatorArea").classList.remove("hidden");
+function enableCalculator() {
+  document.getElementById("calculatorSection").classList.remove("disabled");
 }
 
-function switchCalculator() {
-  document.querySelectorAll(".calc-box").forEach(box => {
-    box.classList.add("hidden");
-  });
-
-  const type = document.getElementById("calculatorType").value;
-  if (type === "sip") document.getElementById("sipCalc").classList.remove("hidden");
-  if (type === "term") document.getElementById("termCalc").classList.remove("hidden");
-  if (type === "retirement") document.getElementById("retirementCalc").classList.remove("hidden");
+function switchMode(selected) {
+  mode = selected;
+  document.querySelectorAll(".calc-toggle button").forEach(btn => btn.classList.remove("active"));
+  event.target.classList.add("active");
 }
 
-function calculateSIP() {
-  const P = Number(document.getElementById("sipAmount").value);
-  const years = Number(document.getElementById("sipYears").value);
-  const rate = Number(document.getElementById("sipReturn").value) / 100 / 12;
-  const n = years * 12;
+function calculate() {
+  const amount = Number(document.getElementById("amount").value);
+  const years = Number(document.getElementById("years").value);
+  const rate = Number(document.getElementById("rate").value) / 100 / 12;
 
-  if (!P || !years || !rate) {
-    alert("Please fill all SIP fields");
-    return;
+  let invested = 0, corpus = 0;
+
+  if (mode === "sip") {
+    const months = years * 12;
+    invested = amount * months;
+    corpus = amount * ((Math.pow(1 + rate, months) - 1) / rate) * (1 + rate);
+  } else {
+    invested = amount;
+    corpus = amount * Math.pow(1 + rate * 12, years);
   }
 
-  const futureValue = P * ((Math.pow(1 + rate, n) - 1) / rate) * (1 + rate);
-  const invested = P * n;
+  document.getElementById("invested").innerText = invested.toFixed(0);
+  document.getElementById("corpus").innerText = corpus.toFixed(0);
+  document.getElementById("returns").innerText = (corpus - invested).toFixed(0);
 
-  document.getElementById("sipResult").innerHTML =
-    `Total Invested: ₹${invested.toLocaleString()} <br>
-     Final Value: ₹${Math.round(futureValue).toLocaleString()}`;
+  drawChart(invested, corpus - invested);
+}
+
+/* PIE CHART */
+function drawChart(invested, returns) {
+  const canvas = document.getElementById("chart");
+  const ctx = canvas.getContext("2d");
+  canvas.width = 250;
+  canvas.height = 250;
+
+  const total = invested + returns;
+  const investAngle = (invested / total) * 2 * Math.PI;
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  ctx.beginPath();
+  ctx.moveTo(125,125);
+  ctx.fillStyle = "#0b3c5d";
+  ctx.arc(125,125,100,0,investAngle);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.moveTo(125,125);
+  ctx.fillStyle = "#4caf50";
+  ctx.arc(125,125,100,investAngle,2*Math.PI);
+  ctx.fill();
 }
