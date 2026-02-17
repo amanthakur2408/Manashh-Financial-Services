@@ -6,11 +6,8 @@
   background: #f6f8fb;
   text-align: center;
 }
-.nav-left img {
-  height: 60px;        /* control logo size */
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
+.calculator-page .nav-left img {
+  height: 60px;
 }
 
 
@@ -89,4 +86,5 @@
     grid-template-columns: 1fr;
   }
 }
+
 
