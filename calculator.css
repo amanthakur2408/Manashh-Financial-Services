@@ -60,3 +60,37 @@
   margin: auto;
 }
 
+/* =====================
+   PIE LEGEND
+===================== */
+.pie-legend {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 14px;
+  color: #333;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* COLORS MATCH PIE */
+.legend-color.invest {
+  background: #0b3c5d;   /* Investment */
+}
+
+.legend-color.return {
+  background: #e1e7ec;   /* Returns */
+}
+
