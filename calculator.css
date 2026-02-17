@@ -1,44 +1,6 @@
 /* =========================
    RESET & GLOBAL
 ========================= */
-/* =========================
-   CALCULATOR HEADER
-========================= */
-.calculator-header {
-  max-width: 900px;
-  margin: 30px auto 10px;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.back-home {
-  color: #0b3c5d;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 15px;
-}
-
-.back-home:hover {
-  text-decoration: underline;
-}
-
-/* LOGO */
-.calc-logo {
-  height: 46px;
-  width: auto;
-  object-fit: contain;
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-  .calculator-header {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -52,16 +14,49 @@ body {
 }
 
 /* =========================
+   CALCULATOR HEADER
+========================= */
+.calculator-header {
+  max-width: 900px;
+  margin: 30px auto 10px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Back to Home */
+.back-home {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0b3c5d;
+  text-decoration: none;
+}
+
+.back-home:hover {
+  text-decoration: underline;
+}
+
+/* Logo (FINAL FIX) */
+.calculator-logo {
+  height: 48px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+}
+
+/* =========================
    PAGE CONTAINER
 ========================= */
 .container {
   max-width: 900px;
-  margin: 60px auto;
+  margin: 30px auto 60px;
   padding: 20px;
 }
 
 /* =========================
-   CARD WRAPPER
+   CARD
 ========================= */
 .card {
   background: #ffffff;
@@ -85,7 +80,7 @@ body {
 }
 
 /* =========================
-   ACCESS FORM (LEAD GATE)
+   LEAD FORM
 ========================= */
 .access-form {
   display: grid;
@@ -190,7 +185,7 @@ body {
 }
 
 /* =========================
-   RESULTS SECTION
+   RESULTS
 ========================= */
 .results {
   margin-top: 40px;
@@ -254,15 +249,9 @@ body {
   .toggle {
     justify-content: center;
   }
-}
-.home-link {
-  text-decoration: none;
-  color: #0b3c5d;
-  font-weight: 600;
-  font-size: 15px;
-}
 
-.home-link:hover {
-  text-decoration: underline;
+  .calculator-header {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
-
