@@ -188,12 +188,13 @@ h1 {
     <p>Enter your details to access the calculator.</p>
 
     <!-- ACCESS FORM -->
-    <div class="access-form">
-      <input type="text" id="name" placeholder="Your Name">
-      <input type="email" id="email" placeholder="Your Email">
-      <input type="tel" id="mobile" placeholder="Mobile Number">
-      <button onclick="unlockCalculator()">Continue to Calculator</button>
-    </div>
+<div class="lead-form">
+  <input type="text" id="leadName" placeholder="Your Name">
+  <input type="email" id="leadEmail" placeholder="Your Email">
+  <input type="tel" id="leadPhone" placeholder="Mobile Number">
+  <button type="button" onclick="validateLead()">Continue to Calculator</button>
+</div>
+
 
     <!-- CALCULATOR -->
     <div class="calculator" id="calculator">
