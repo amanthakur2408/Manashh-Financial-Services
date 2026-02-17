@@ -52,7 +52,6 @@
   </div>
 </div>
 
-<!-- SCRIPT -->
 <script>
 function calculateSIP() {
   const amount = Number(document.getElementById("amount").value);
@@ -75,6 +74,7 @@ function calculateSIP() {
   const invested = amount * months;
   const returns = corpus - invested;
 
+  // TEXT OUTPUT
   document.getElementById("invested").innerText =
     Math.round(invested).toLocaleString();
 
@@ -83,6 +83,15 @@ function calculateSIP() {
 
   document.getElementById("corpus").innerText =
     Math.round(corpus).toLocaleString();
+
+  // 🔥 PIE CHART LOGIC (THIS WAS MISSING)
+  const investedAngle = (invested / corpus) * 360;
+
+  document.getElementById("pie").style.background =
+    `conic-gradient(
+      #0b3c5d 0deg ${investedAngle}deg,
+      #e1e7ec ${investedAngle}deg 360deg
+    )`;
 
   document.getElementById("result").style.display = "block";
 }
