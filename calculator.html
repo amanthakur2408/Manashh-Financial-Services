@@ -1,62 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>SIP Calculator | Manashh Financial Services</title>
-  <link rel="stylesheet" href="calculator.css">
-  <script defer src="calculator.js"></script>
+<meta charset="UTF-8">
+<title>SIP Calculator | Manashh Financial Services</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* =====================
+   GLOBAL
+===================== */
+body {
+  font-family: Arial, sans-serif;
+  background: #f6f8fb;
+  margin: 0;
+  color: #333;
+}
+
+h1 {
+  color: #0b3c5d;
+  margin-bottom: 10px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+/* =====================
+   CARD
+===================== */
+.card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  padding: 40px;
+}
+
+/* =====================
+   ACCESS FORM
+===================== */
+.access-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.access-form input {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.access-form button {
+  grid-column: span 3;
+  padding: 14px;
+  background: #0b3c5d;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* =====================
+   CALCULATOR
+===================== */
+.calculator {
+  display: none;
+  margin-top: 30px;
+}
+
+.toggle {
+  display: inline-flex;
+  background: #e9eef3;
+  border-radius: 40px;
+  padding: 6px;
+  margin-bottom: 25px;
+}
+
+.toggle button {
+  border: none;
+  background: transparent;
+  padding: 10px 26px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.toggle .active {
+  background: #0b3c5d;
+  color: #fff;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.fields input {
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.calculate-btn {
+  margin-top: 25px;
+  padding: 16px 40px;
+  background: #0b3c5d;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* =====================
+   RESULTS
+===================== */
+.results {
+  margin-top: 35px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.result-text p {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.final {
+  font-size: 22px;
+  font-weight: bold;
+  color: #0b3c5d;
+  margin-top: 10px;
+}
+
+/* =====================
+   PIE CHART
+===================== */
+.pie {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: conic-gradient(#0b3c5d 0deg, #e1e7ec 0deg);
+  margin: auto;
+}
+
+/* =====================
+   NOTE
+===================== */
+.note {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #777;
+  text-align: center;
+}
+
+/* =====================
+   MOBILE
+===================== */
+@media (max-width: 768px) {
+  .access-form,
+  .fields,
+  .results {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
+
 <body>
 
-<section class="calculator-wrapper">
+<div class="container">
+  <div class="card">
 
-  <!-- STEP 1 : USER DETAILS -->
-  <div class="user-card" id="userForm">
     <h1>SIP Calculator</h1>
-    <p class="subtitle">
-      Enter your details to access the calculator.
-    </p>
+    <p>Enter your details to access the calculator.</p>
 
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="email" id="email" placeholder="Your Email" required>
-    <input type="tel" id="phone" placeholder="Mobile Number" required>
+    <!-- ACCESS FORM -->
+    <div class="access-form">
+      <input type="text" id="name" placeholder="Your Name">
+      <input type="email" id="email" placeholder="Your Email">
+      <input type="tel" id="mobile" placeholder="Mobile Number">
+      <button onclick="unlockCalculator()">Continue to Calculator</button>
+    </div>
 
-    <button onclick="enableCalculator()">
-      Continue to Calculator
-    </button>
+    <!-- CALCULATOR -->
+    <div class="calculator" id="calculator">
+
+      <div class="toggle">
+        <button class="active" onclick="setMode('sip')">SIP</button>
+        <button onclick="setMode('lump')">Lumpsum</button>
+      </div>
+
+      <div class="fields">
+        <input type="number" id="amount" placeholder="Investment Amount (₹)">
+        <input type="number" id="years" placeholder="Duration (Years)">
+        <input type="number" id="rate" placeholder="Expected Return (%)">
+      </div>
+
+      <button class="calculate-btn" onclick="calculate()">Calculate</button>
+
+      <div class="results">
+        <div class="result-text">
+          <p>Total Invested: ₹<span id="invested">0</span></p>
+          <p>Estimated Returns: ₹<span id="returns">0</span></p>
+          <p class="final">Final Corpus: ₹<span id="corpus">0</span></p>
+        </div>
+
+        <div class="pie" id="pie"></div>
+      </div>
+
+      <p class="note">
+        *Returns are indicative and subject to market risks.
+      </p>
+
+    </div>
   </div>
+</div>
 
-  <!-- STEP 2 : CALCULATOR -->
-  <div class="calculator-card disabled" id="calculatorSection">
+<script>
+let mode = "sip";
 
-    <div class="calc-toggle">
-      <button class="active" onclick="switchMode('sip')">SIP</button>
-      <button onclick="switchMode('lumpsum')">Lumpsum</button>
-    </div>
+function unlockCalculator() {
+  document.getElementById("calculator").style.display = "block";
+}
 
-    <div class="calc-fields">
-      <input type="number" id="amount" placeholder="Investment Amount (₹)">
-      <input type="number" id="years" placeholder="Duration (Years)">
-      <input type="number" id="rate" placeholder="Expected Return (%)">
-    </div>
+function setMode(type) {
+  mode = type;
+  document.querySelectorAll(".toggle button").forEach(btn => btn.classList.remove("active"));
+  event.target.classList.add("active");
+}
 
-    <button class="calc-btn" onclick="calculate()">
-      Calculate
-    </button>
+function calculate() {
+  const amount = Number(amountInput.value = document.getElementById("amount").value);
+  const years = Number(document.getElementById("years").value);
+  const rate = Number(document.getElementById("rate").value) / 100 / 12;
 
-    <!-- RESULT -->
-    <div class="result">
-      <p>Total Invested: ₹<span id="invested">0</span></p>
-      <p>Estimated Returns: ₹<span id="returns">0</span></p>
-      <p class="final">Final Corpus: ₹<span id="corpus">0</span></p>
-    </div>
+  let invested = 0, corpus = 0;
 
-    <!-- CHART -->
-    <canvas id="chart"></canvas>
+  if (mode === "sip") {
+    const months = years * 12;
+    invested = amount * months;
+    corpus = amount * ((Math.pow(1 + rate, months) - 1) / rate) * (1 + rate);
+  } else {
+    invested = amount;
+    corpus = amount * Math.pow(1 + rate * 12, years);
+  }
 
-  </div>
+  const returns = corpus - invested;
 
-</section>
+  investedEl.textContent = invested.toFixed(0);
+  returnsEl.textContent = returns.toFixed(0);
+  corpusEl.textContent = corpus.toFixed(0);
+
+  const investedAngle = (invested / corpus) * 360;
+  document.getElementById("pie").style.background =
+    `conic-gradient(#0b3c5d 0deg ${investedAngle}deg, #e1e7ec ${investedAngle}deg 360deg)`;
+}
+
+const investedEl = document.getElementById("invested");
+const returnsEl = document.getElementById("returns");
+const corpusEl = document.getElementById("corpus");
+</script>
 
 </body>
 </html>
