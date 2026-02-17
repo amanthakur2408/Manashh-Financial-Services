@@ -1,61 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Financial Calculator | Manashh Financial Services</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/calculator.css">
-</head>
-<body>
-
 <section class="calculator-section">
+  <div class="calculator-card">
 
-  <h2>Financial Calculator</h2>
-  <p class="calculator-subtext">
-    Plan your investments with our easy-to-use calculators.
-  </p>
+    <h1>SIP Calculator</h1>
+    <p class="calc-subtitle">
+      Estimate how your monthly SIP investments can grow over time.
+    </p>
 
-  <!-- LEAD CAPTURE -->
-  <div class="lead-box">
-    <input type="text" id="userName" placeholder="Your Name" required>
-    <input type="tel" id="userPhone" placeholder="Phone Number" required>
-    <button onclick="unlockCalculator()">Continue</button>
-  </div>
+    <!-- INPUTS -->
+    <div class="calc-grid">
+      <div class="calc-field">
+        <label>Monthly SIP Amount (₹)</label>
+        <input type="number" id="sipAmount" placeholder="e.g. 5000">
+      </div>
 
-  <!-- CALCULATOR (LOCKED INITIALLY) -->
-  <div class="calculator-card hidden" id="calculatorArea">
+      <div class="calc-field">
+        <label>Investment Duration (Years)</label>
+        <input type="number" id="sipYears" placeholder="e.g. 10">
+      </div>
 
-    <select id="calculatorType" onchange="switchCalculator()">
-      <option value="">Select Calculator</option>
-      <option value="sip">SIP Calculator</option>
-      <option value="term">Term Insurance Calculator</option>
-      <option value="retirement">Retirement Calculator</option>
-    </select>
-
-    <!-- SIP CALCULATOR -->
-    <div id="sipCalc" class="calc-box hidden">
-      <input type="number" id="sipAmount" placeholder="Monthly SIP Amount (₹)">
-      <input type="number" id="sipYears" placeholder="Investment Duration (Years)">
-      <input type="number" id="sipReturn" placeholder="Expected Annual Return (%)">
-      <button onclick="calculateSIP()">Calculate SIP</button>
-
-      <div class="result" id="sipResult"></div>
+      <div class="calc-field">
+        <label>Expected Annual Return (%)</label>
+        <input type="number" id="sipReturn" placeholder="e.g. 12">
+      </div>
     </div>
 
-    <!-- TERM (PLACEHOLDER) -->
-    <div id="termCalc" class="calc-box hidden">
-      <p>Term Insurance calculator coming soon.</p>
+    <!-- BUTTON -->
+    <button class="calc-btn">Calculate SIP</button>
+
+    <!-- RESULT -->
+    <div class="calc-result">
+      <p><strong>Total Invested:</strong> ₹0</p>
+      <p><strong>Estimated Returns:</strong> ₹0</p>
+      <p><strong>Final Corpus:</strong> ₹0</p>
     </div>
 
-    <!-- RETIREMENT (PLACEHOLDER) -->
-    <div id="retirementCalc" class="calc-box hidden">
-      <p>Retirement calculator coming soon.</p>
-    </div>
+    <!-- CTA -->
+    <a href="#contact" class="calc-cta">Talk to an Advisor</a>
 
   </div>
-
 </section>
-
-<script src="js/calculator.js"></script>
-</body>
-</html>
