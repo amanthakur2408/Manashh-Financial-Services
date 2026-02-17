@@ -7,6 +7,38 @@
   <meta name="description" content="Manashh Financial Services – Your Partner in Financial Growth">
   <link rel="stylesheet" href="style.css">
 </head>
+  <script>
+document.getElementById("sipBtn").addEventListener("click", function () {
+
+  const P = parseFloat(document.getElementById("sipAmount").value);
+  const years = parseFloat(document.getElementById("sipYears").value);
+  const rate = parseFloat(document.getElementById("sipRate").value);
+
+  if (!P || !years || !rate) {
+    alert("Please enter all values");
+    return;
+  }
+
+  const n = years * 12;
+  const r = rate / 12 / 100;
+
+  const futureValue =
+    P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+
+  const totalInvested = P * n;
+  const returns = futureValue - totalInvested;
+
+  document.getElementById("totalInvested").innerText =
+    "₹" + Math.round(totalInvested).toLocaleString("en-IN");
+
+  document.getElementById("estimatedReturns").innerText =
+    "₹" + Math.round(returns).toLocaleString("en-IN");
+
+  document.getElementById("finalCorpus").innerText =
+    "₹" + Math.round(futureValue).toLocaleString("en-IN");
+});
+</script>
+
 <body>
 
 <nav class="navbar">
@@ -278,6 +310,7 @@
   <img src="images/whatsapp.svg" alt="WhatsApp">
 </a>
 </html>
+
 
 
 
