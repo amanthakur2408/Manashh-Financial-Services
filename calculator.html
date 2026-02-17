@@ -227,60 +227,33 @@ h1 {
 </div>
 
 <script>
-  let investmentType = "sip";
+let investmentType = "sip";
 
-  function selectType(type) {
-    investmentType = type;
+function selectType(type) {
+  investmentType = type;
 
-    document.getElementById("sipBtn").classList.remove("active");
-    document.getElementById("lumpBtn").classList.remove("active");
+  // Toggle active state
+  document.getElementById("sipBtn").classList.remove("active");
+  document.getElementById("lumpBtn").classList.remove("active");
 
-    if (type === "sip") {
-      document.getElementById("sipBtn").classList.add("active");
-    } else {
-      document.getElementById("lumpBtn").classList.add("active");
-    }
+  if (type === "sip") {
+    document.getElementById("sipBtn").classList.add("active");
+  } else {
+    document.getElementById("lumpBtn").classList.add("active");
   }
 
-  function calculateInvestment() {
-    const amount = parseFloat(document.getElementById("amount").value);
-    const years = parseFloat(document.getElementById("years").value);
-    const rate = parseFloat(document.getElementById("rate").value);
+  // ✅ CLEAR INPUT FIELDS
+  document.getElementById("amount").value = "";
+  document.getElementById("years").value = "";
+  document.getElementById("rate").value = "";
 
-    if (!amount || !years || !rate) {
-      alert("Please enter all values");
-      return;
-    }
-
-    let totalInvested = 0;
-    let finalCorpus = 0;
-
-    const monthlyRate = rate / 12 / 100;
-    const months = years * 12;
-
-    if (investmentType === "sip") {
-      totalInvested = amount * months;
-      finalCorpus =
-        amount *
-        ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) *
-        (1 + monthlyRate);
-    } else {
-      totalInvested = amount;
-      finalCorpus = amount * Math.pow(1 + rate / 100, years);
-    }
-
-    const returns = finalCorpus - totalInvested;
-
-    document.getElementById("invested").innerText =
-      "₹" + totalInvested.toFixed(0);
-
-    document.getElementById("returns").innerText =
-      "₹" + returns.toFixed(0);
-
-    document.getElementById("corpus").innerText =
-      "₹" + finalCorpus.toFixed(0);
-  }
+  // ✅ RESET RESULTS
+  document.getElementById("invested").innerText = "₹0";
+  document.getElementById("returns").innerText = "₹0";
+  document.getElementById("corpus").innerText = "₹0";
+}
 </script>
+
 
 
 </body>
