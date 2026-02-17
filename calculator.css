@@ -1,103 +1,219 @@
+/* =========================
+   RESET & GLOBAL
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   background: #f6f8fb;
+  color: #333;
 }
 
-.calculator-wrapper {
+/* =========================
+   PAGE CONTAINER
+========================= */
+.container {
   max-width: 900px;
   margin: 60px auto;
   padding: 20px;
 }
 
-/* USER FORM */
-.user-card {
-  background: #fff;
+/* =========================
+   CARD WRAPPER
+========================= */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
   padding: 40px;
-  border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  text-align: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
-.user-card input {
-  width: 100%;
-  padding: 14px;
-  margin: 12px 0;
-  border-radius: 8px;
+/* =========================
+   HEADINGS
+========================= */
+.card h1 {
+  font-size: 34px;
+  color: #0b3c5d;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* =========================
+   ACCESS FORM (LEAD GATE)
+========================= */
+.access-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 35px;
+}
+
+.access-form input {
+  padding: 14px 16px;
+  border-radius: 10px;
   border: 1px solid #ccc;
-}
-
-.user-card button {
-  margin-top: 15px;
-  padding: 14px 32px;
-  border-radius: 30px;
-  background: #0b3c5d;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-/* CALCULATOR */
-.calculator-card {
-  margin-top: 40px;
-  background: #fff;
-  padding: 40px;
-  border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-.disabled {
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-/* TOGGLE */
-.calc-toggle {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.calc-toggle button {
-  flex: 1;
-  padding: 12px;
-  border-radius: 30px;
-  border: 1px solid #0b3c5d;
-  background: #fff;
-  cursor: pointer;
-}
-
-.calc-toggle .active {
-  background: #0b3c5d;
-  color: #fff;
-}
-
-/* FIELDS */
-.calc-fields input {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-.calc-btn {
-  padding: 14px 36px;
-  background: #0b3c5d;
-  color: #fff;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-}
-
-.result {
-  margin-top: 25px;
-}
-
-.result p {
   font-size: 15px;
 }
 
-.result .final {
-  font-size: 18px;
+.access-form button {
+  grid-column: span 3;
+  padding: 14px;
+  background: #0b3c5d;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.access-form button:hover {
+  background: #0e517a;
+}
+
+/* =========================
+   CALCULATOR SECTION
+========================= */
+.calculator {
+  display: none;
+  margin-top: 20px;
+}
+
+/* =========================
+   SIP / LUMPSUM TOGGLE
+========================= */
+.toggle {
+  display: inline-flex;
+  background: #e9eef3;
+  border-radius: 40px;
+  padding: 6px;
+  margin-bottom: 25px;
+}
+
+.toggle button {
+  border: none;
+  background: transparent;
+  padding: 10px 28px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #333;
+}
+
+.toggle .active {
+  background: #0b3c5d;
+  color: #ffffff;
+}
+
+/* =========================
+   INPUT FIELDS
+========================= */
+.fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.fields input {
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+/* =========================
+   CALCULATE BUTTON
+========================= */
+.calculate-btn {
+  margin-top: 25px;
+  padding: 16px 40px;
+  background: #0b3c5d;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.calculate-btn:hover {
+  background: #0e517a;
+}
+
+/* =========================
+   RESULTS SECTION
+========================= */
+.results {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 30px;
+}
+
+.result-text p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.result-text span {
+  font-weight: 600;
+}
+
+.final {
+  font-size: 22px;
   font-weight: bold;
+  color: #0b3c5d;
+  margin-top: 10px;
+}
+
+/* =========================
+   PIE CHART
+========================= */
+.pie {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: conic-gradient(#0b3c5d 0deg, #e1e7ec 0deg);
+  margin: auto;
+}
+
+/* =========================
+   DISCLAIMER
+========================= */
+.note {
+  margin-top: 25px;
+  font-size: 12px;
+  color: #777;
+  text-align: center;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .access-form,
+  .fields,
+  .results {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 25px;
+  }
+
+  .toggle {
+    justify-content: center;
+  }
 }
