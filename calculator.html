@@ -185,11 +185,9 @@ p {
 <body>
 
 <div class="container">
-
   <a href="index.html">← Back to Home</a>
 
   <div class="card">
-
     <h1>SIP Calculator</h1>
     <p>Enter your details to access the calculator.</p>
 
@@ -230,43 +228,82 @@ p {
       <p class="note">
         *Returns are indicative and subject to market risks.
       </p>
-
     </div>
   </div>
 </div>
 
 <script>
+let mode = "sip";
+
+/* =====================
+   LEAD VALIDATION
+===================== */
 function validateLead() {
-  const name = document.getElementById("leadName").value.trim();
-  const email = document.getElementById("leadEmail").value.trim();
-  const phone = document.getElementById("leadPhone").value.trim();
-
-  // Empty check
-  if (!name || !email || !phone) {
-    alert("Please fill all details");
-    return;
-  }
-
-  // Email format check
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    alert("Please enter a valid email address");
-    return;
-  }
-
-  // ✅ Mobile number must be EXACTLY 10 digits & start with 6-9
   const phoneRegex = /^[6-9]\d{9}$/;
-  if (!phoneRegex.test(phone)) {
-    alert("Please enter a valid 10-digit mobile number");
+
+  if (
+    !leadName.value.trim() ||
+    !leadEmail.value.trim() ||
+    !phoneRegex.test(leadPhone.value)
+  ) {
+    alert("Enter valid Name, Email & 10-digit Mobile Number");
     return;
   }
 
-  // Show calculator
-  document.getElementById("leadForm").style.display = "none";
-  document.getElementById("calculator").style.display = "block";
+  leadForm.style.display = "none";
+  calculator.style.display = "block";
+}
+
+/* =====================
+   SWITCH SIP / LUMPSUM
+===================== */
+function selectType(type) {
+  mode = type;
+  sipBtn.classList.remove("active");
+  lumpBtn.classList.remove("active");
+  document.getElementById(type + "Btn").classList.add("active");
+
+  // Clear inputs & results
+  amount.value = "";
+  years.value = "";
+  rate.value = "";
+  invested.innerText = returns.innerText = corpus.innerText = "0";
+  pie.style.background = "conic-gradient(#e1e7ec 0deg, #e1e7ec 360deg)";
+}
+
+/* =====================
+   CALCULATION
+===================== */
+function calculate() {
+  const P = +amount.value;
+  const r = +rate.value / 100 / 12;
+  const n = +years.value * 12;
+
+  if (!P || !rate.value || !years.value) {
+    alert("Please enter all calculator values");
+    return;
+  }
+
+  let investedAmt, corpusAmt;
+
+  if (mode === "sip") {
+    corpusAmt = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+    investedAmt = P * n;
+  } else {
+    corpusAmt = P * Math.pow(1 + rate.value / 100, years.value);
+    investedAmt = P;
+  }
+
+  const returnsAmt = corpusAmt - investedAmt;
+
+  invested.innerText = Math.round(investedAmt).toLocaleString();
+  returns.innerText = Math.round(returnsAmt).toLocaleString();
+  corpus.innerText = Math.round(corpusAmt).toLocaleString();
+
+  const investPercent = (investedAmt / corpusAmt) * 360;
+  pie.style.background = `conic-gradient(#0b3c5d 0deg ${investPercent}deg, #e1e7ec ${investPercent}deg 360deg)`;
 }
 </script>
-
 
 </body>
 </html>
