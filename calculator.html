@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>SIP Calculator | Manashh Financial Services</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="calculator.css">
 
 <style>
 /* =====================
@@ -17,20 +16,18 @@ body {
   color: #333;
 }
 
-h1 {
+a {
+  text-decoration: none;
   color: #0b3c5d;
-  margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .container {
   max-width: 900px;
-  margin: 60px auto;
+  margin: 50px auto;
   padding: 20px;
 }
 
-/* =====================
-   CARD
-===================== */
 .card {
   background: #fff;
   border-radius: 14px;
@@ -38,24 +35,33 @@ h1 {
   padding: 40px;
 }
 
+h1 {
+  color: #0b3c5d;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
 /* =====================
-   ACCESS FORM
+   LEAD FORM
 ===================== */
-.access-form {
+.lead-form {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
   margin-bottom: 30px;
 }
 
-.access-form input {
+.lead-form input {
   padding: 14px;
   border-radius: 10px;
   border: 1px solid #ccc;
   font-size: 15px;
 }
 
-.access-form button {
+.lead-form button {
   grid-column: span 3;
   padding: 14px;
   background: #0b3c5d;
@@ -149,12 +155,12 @@ h1 {
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: conic-gradient(#0b3c5d 0deg, #e1e7ec 0deg);
+  background: conic-gradient(#e1e7ec 0deg, #e1e7ec 360deg);
   margin: auto;
 }
 
 /* =====================
-   NOTE
+   FOOTER NOTE
 ===================== */
 .note {
   margin-top: 20px;
@@ -167,7 +173,7 @@ h1 {
    MOBILE
 ===================== */
 @media (max-width: 768px) {
-  .access-form,
+  .lead-form,
   .fields,
   .results {
     grid-template-columns: 1fr;
@@ -177,31 +183,30 @@ h1 {
 </head>
 
 <body>
-<div style="margin-bottom: 20px;">
-  <a href="index.html" class="home-link">← Back to Home</a>
-</div>
 
 <div class="container">
+
+  <a href="index.html">← Back to Home</a>
+
   <div class="card">
 
     <h1>SIP Calculator</h1>
     <p>Enter your details to access the calculator.</p>
 
-    <!-- ACCESS FORM -->
-<div class="lead-form">
-  <input type="text" id="leadName" placeholder="Your Name">
-  <input type="email" id="leadEmail" placeholder="Your Email">
-  <input type="tel" id="leadPhone" placeholder="Mobile Number">
-  <button type="button" onclick="validateLead()">Continue to Calculator</button>
-</div>
-
+    <!-- LEAD FORM -->
+    <div class="lead-form" id="leadForm">
+      <input type="text" id="leadName" placeholder="Your Name">
+      <input type="email" id="leadEmail" placeholder="Your Email">
+      <input type="tel" id="leadPhone" placeholder="Mobile Number">
+      <button onclick="validateLead()">Continue to Calculator</button>
+    </div>
 
     <!-- CALCULATOR -->
     <div class="calculator" id="calculator">
 
       <div class="toggle">
-        <button class="active" onclick="setMode('sip')">SIP</button>
-        <button onclick="setMode('lump')">Lumpsum</button>
+        <button id="sipBtn" class="active" onclick="selectType('sip')">SIP</button>
+        <button id="lumpBtn" onclick="selectType('lump')">Lumpsum</button>
       </div>
 
       <div class="fields">
@@ -233,32 +238,71 @@ h1 {
 <script>
 let investmentType = "sip";
 
+function validateLead() {
+  const name = leadName.value.trim();
+  const email = leadEmail.value.trim();
+  const phone = leadPhone.value.trim();
+
+  if (!name || !email || !phone) {
+    alert("Please fill all details");
+    return;
+  }
+
+  if (!/^[6-9]\d{9}$/.test(phone)) {
+    alert("Enter a valid 10-digit mobile number");
+    return;
+  }
+
+  document.getElementById("leadForm").style.display = "none";
+  document.getElementById("calculator").style.display = "block";
+}
+
 function selectType(type) {
   investmentType = type;
 
-  // Toggle active state
-  document.getElementById("sipBtn").classList.remove("active");
-  document.getElementById("lumpBtn").classList.remove("active");
+  sipBtn.classList.remove("active");
+  lumpBtn.classList.remove("active");
 
-  if (type === "sip") {
-    document.getElementById("sipBtn").classList.add("active");
-  } else {
-    document.getElementById("lumpBtn").classList.add("active");
+  type === "sip" ? sipBtn.classList.add("active") : lumpBtn.classList.add("active");
+
+  amount.value = years.value = rate.value = "";
+  invested.innerText = returns.innerText = corpus.innerText = "0";
+
+  pie.style.background = "conic-gradient(#e1e7ec 0deg, #e1e7ec 360deg)";
+}
+
+function calculate() {
+  const amt = parseFloat(amount.value);
+  const yrs = parseFloat(years.value);
+  const rt = parseFloat(rate.value);
+
+  if (!amt || !yrs || !rt) {
+    alert("Please fill all calculator fields");
+    return;
   }
 
-  // ✅ CLEAR INPUT FIELDS
-  document.getElementById("amount").value = "";
-  document.getElementById("years").value = "";
-  document.getElementById("rate").value = "";
+  let investedAmt, corpusAmt;
 
-  // ✅ RESET RESULTS
-  document.getElementById("invested").innerText = "₹0";
-  document.getElementById("returns").innerText = "₹0";
-  document.getElementById("corpus").innerText = "₹0";
+  if (investmentType === "sip") {
+    const m = yrs * 12;
+    const r = rt / 12 / 100;
+    investedAmt = amt * m;
+    corpusAmt = amt * ((Math.pow(1 + r, m) - 1) / r) * (1 + r);
+  } else {
+    investedAmt = amt;
+    corpusAmt = amt * Math.pow(1 + rt / 100, yrs);
+  }
+
+  const returnsAmt = corpusAmt - investedAmt;
+
+  invested.innerText = investedAmt.toFixed(0);
+  returns.innerText = returnsAmt.toFixed(0);
+  corpus.innerText = corpusAmt.toFixed(0);
+
+  const angle = (investedAmt / corpusAmt) * 360;
+  pie.style.background = `conic-gradient(#0b3c5d 0deg ${angle}deg, #e1e7ec ${angle}deg 360deg)`;
 }
 </script>
-
-
 
 </body>
 </html>
