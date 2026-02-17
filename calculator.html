@@ -10,24 +10,73 @@
 
 <body class="calculator-page">
 
+<!-- HEADER -->
 <div class="calculator-header">
   <a href="index.html" class="back-home">← Back to Home</a>
   <img src="images/logo.png" class="calculator-logo" alt="Manashh Logo">
 </div>
 
+<!-- CONTENT -->
 <div class="container">
   <div class="card">
     <h1>SIP Calculator</h1>
-    <p>Enter details to calculate returns.</p>
+    <p>Enter details to calculate your investment returns.</p>
 
+    <!-- INPUTS -->
     <div class="calculator">
-      <input type="number" placeholder="Monthly Investment (₹)">
-      <input type="number" placeholder="Years">
-      <input type="number" placeholder="Expected Return (%)">
-      <button>Calculate</button>
+      <input type="number" id="amount" placeholder="Monthly Investment (₹)">
+      <input type="number" id="years" placeholder="Investment Duration (Years)">
+      <input type="number" id="rate" placeholder="Expected Return (%)">
+
+      <button onclick="calculateSIP()">Calculate</button>
+
+      <!-- RESULT -->
+      <div class="result" id="result" style="margin-top:20px; display:none;">
+        <p>Total Invested: ₹<span id="invested">0</span></p>
+        <p>Estimated Returns: ₹<span id="returns">0</span></p>
+        <p style="font-size:20px;font-weight:600;color:#0b3c5d;">
+          Final Corpus: ₹<span id="corpus">0</span>
+        </p>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- SCRIPT -->
+<script>
+function calculateSIP() {
+  const amount = Number(document.getElementById("amount").value);
+  const years = Number(document.getElementById("years").value);
+  const rate = Number(document.getElementById("rate").value);
+
+  if (!amount || !years || !rate) {
+    alert("Please enter all values");
+    return;
+  }
+
+  const monthlyRate = rate / 100 / 12;
+  const months = years * 12;
+
+  const corpus =
+    amount *
+    ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) *
+    (1 + monthlyRate);
+
+  const invested = amount * months;
+  const returns = corpus - invested;
+
+  document.getElementById("invested").innerText =
+    Math.round(invested).toLocaleString();
+
+  document.getElementById("returns").innerText =
+    Math.round(returns).toLocaleString();
+
+  document.getElementById("corpus").innerText =
+    Math.round(corpus).toLocaleString();
+
+  document.getElementById("result").style.display = "block";
+}
+</script>
 
 </body>
 </html>
