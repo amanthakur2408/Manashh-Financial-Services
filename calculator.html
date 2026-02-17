@@ -4,125 +4,58 @@
   <meta charset="UTF-8">
   <title>Financial Calculator | Manashh Financial Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SIP and Financial Calculators by Manashh Financial Services">
-  <link rel="stylesheet" href="calculator.css">
+  <link rel="stylesheet" href="css/calculator.css">
 </head>
 <body>
 
-<!-- HEADER -->
-<nav class="navbar">
-  <div class="nav-left">
-    <a href="index.html">
-      <img src="logo.png" alt="Manashh Financial Services">
-    </a>
-  </div>
-
-  <div class="nav-right">
-    <a href="index.html">Home</a>
-    <a href="#calculator">Calculator</a>
-  </div>
-</nav>
-
 <section class="calculator-section">
+
   <h2>Financial Calculator</h2>
   <p class="calculator-subtext">
-    Choose a calculator to plan your finances better.
+    Plan your investments with our easy-to-use calculators.
   </p>
 
-  <div class="calculator-card">
-    <select>
-      <option>Select Calculator</option>
-      <option>SIP Calculator</option>
-      <option>Term Insurance Calculator</option>
-      <option>Retirement Calculator</option>
+  <!-- LEAD CAPTURE -->
+  <div class="lead-box">
+    <input type="text" id="userName" placeholder="Your Name" required>
+    <input type="tel" id="userPhone" placeholder="Phone Number" required>
+    <button onclick="unlockCalculator()">Continue</button>
+  </div>
+
+  <!-- CALCULATOR (LOCKED INITIALLY) -->
+  <div class="calculator-card hidden" id="calculatorArea">
+
+    <select id="calculatorType" onchange="switchCalculator()">
+      <option value="">Select Calculator</option>
+      <option value="sip">SIP Calculator</option>
+      <option value="term">Term Insurance Calculator</option>
+      <option value="retirement">Retirement Calculator</option>
     </select>
 
-    <a href="calculator.html" class="hero-btn">
-      Open Calculator
-    </a>
-  </div>
-</section>
+    <!-- SIP CALCULATOR -->
+    <div id="sipCalc" class="calc-box hidden">
+      <input type="number" id="sipAmount" placeholder="Monthly SIP Amount (₹)">
+      <input type="number" id="sipYears" placeholder="Investment Duration (Years)">
+      <input type="number" id="sipReturn" placeholder="Expected Annual Return (%)">
+      <button onclick="calculateSIP()">Calculate SIP</button>
 
-
-  <!-- SIP CALCULATOR -->
-  <div class="calc-box">
-
-    <div class="calc-form">
-      <label>Monthly SIP Amount (₹)</label>
-      <input type="number" id="sipAmount" placeholder="e.g. 5000">
-
-      <label>Investment Duration (Years)</label>
-      <input type="number" id="sipYears" placeholder="e.g. 10">
-
-      <label>Expected Annual Return (%)</label>
-      <input type="number" id="sipRate" placeholder="e.g. 12">
-
-      <button id="calculateBtn">Calculate</button>
+      <div class="result" id="sipResult"></div>
     </div>
 
-    <div class="calc-result">
-      <h3>Investment Summary</h3>
+    <!-- TERM (PLACEHOLDER) -->
+    <div id="termCalc" class="calc-box hidden">
+      <p>Term Insurance calculator coming soon.</p>
+    </div>
 
-      <p>Total Invested:<br>
-        <strong id="invested">₹0</strong>
-      </p>
-
-      <p>Estimated Returns:<br>
-        <strong id="returns">₹0</strong>
-      </p>
-
-      <p class="final">
-        Final Corpus:<br>
-        <span id="corpus">₹0</span>
-      </p>
-
-      <a href="index.html#contact" class="cta">
-        Talk to an Advisor
-      </a>
+    <!-- RETIREMENT (PLACEHOLDER) -->
+    <div id="retirementCalc" class="calc-box hidden">
+      <p>Retirement calculator coming soon.</p>
     </div>
 
   </div>
+
 </section>
 
-<footer>
-  <p>© 2026 Manashh Financial Services</p>
-  <p class="disclaimer">
-    Disclaimer: Investments are subject to market risks. Please read all scheme-related documents carefully.
-  </p>
-</footer>
-
-<!-- JS -->
-<script>
-document.getElementById("calculateBtn").addEventListener("click", function () {
-
-  const P = Number(document.getElementById("sipAmount").value);
-  const years = Number(document.getElementById("sipYears").value);
-  const rate = Number(document.getElementById("sipRate").value);
-
-  if (P <= 0 || years <= 0 || rate <= 0) {
-    alert("Please enter valid values");
-    return;
-  }
-
-  const months = years * 12;
-  const r = rate / 12 / 100;
-
-  const futureValue =
-    P * ((Math.pow(1 + r, months) - 1) / r) * (1 + r);
-
-  const invested = P * months;
-  const returns = futureValue - invested;
-
-  document.getElementById("invested").innerText =
-    "₹" + invested.toLocaleString("en-IN");
-
-  document.getElementById("returns").innerText =
-    "₹" + Math.round(returns).toLocaleString("en-IN");
-
-  document.getElementById("corpus").innerText =
-    "₹" + Math.round(futureValue).toLocaleString("en-IN");
-});
-</script>
-
+<script src="js/calculator.js"></script>
 </body>
 </html>
