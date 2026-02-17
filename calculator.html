@@ -31,13 +31,23 @@
       <button onclick="calculateSIP()">Calculate</button>
 
       <!-- RESULT -->
-      <div class="result" id="result" style="margin-top:20px; display:none;">
-        <p>Total Invested: ₹<span id="invested">0</span></p>
-        <p>Estimated Returns: ₹<span id="returns">0</span></p>
-        <p style="font-size:20px;font-weight:600;color:#0b3c5d;">
-          Final Corpus: ₹<span id="corpus">0</span>
-        </p>
-      </div>
+     <div class="result" id="result" style="margin-top:20px; display:none;">
+  <div class="result-grid">
+
+    <div>
+      <p>Total Invested: ₹<span id="invested">0</span></p>
+      <p>Estimated Returns: ₹<span id="returns">0</span></p>
+      <p style="font-size:20px;font-weight:600;color:#0b3c5d;">
+        Final Corpus: ₹<span id="corpus">0</span>
+      </p>
+    </div>
+
+    <!-- PIE -->
+    <div class="pie" id="pie"></div>
+
+  </div>
+</div>
+
     </div>
   </div>
 </div>
