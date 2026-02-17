@@ -1,6 +1,44 @@
 /* =========================
    RESET & GLOBAL
 ========================= */
+/* =========================
+   CALCULATOR HEADER
+========================= */
+.calculator-header {
+  max-width: 900px;
+  margin: 30px auto 10px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back-home {
+  color: #0b3c5d;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.back-home:hover {
+  text-decoration: underline;
+}
+
+/* LOGO */
+.calc-logo {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .calculator-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
