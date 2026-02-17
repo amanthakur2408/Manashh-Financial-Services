@@ -1,83 +1,62 @@
-<section class="calculator-landing">
-  <h1>Financial Calculators</h1>
-  <p class="landing-subtitle">
-    Choose a calculator to plan your finances better.
-  </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SIP Calculator | Manashh Financial Services</title>
+  <link rel="stylesheet" href="calculator.css">
+  <script defer src="calculator.js"></script>
+</head>
+<body>
 
-  <div class="calculator-grid">
+<section class="calculator-wrapper">
 
-    <!-- SIP -->
-    <div class="calculator-card">
-      <div class="calc-icon">📈</div>
-      <h3>SIP Calculator</h3>
-      <p>
-        Calculate how your monthly SIP investments can grow over time.
-      </p>
-      <a href="#sip-calculator" class="calc-link">
-        Use Calculator
-      </a>
-    </div>
-
-    <!-- TERM -->
-    <div class="calculator-card">
-      <div class="calc-icon">🛡️</div>
-      <h3>Term Insurance</h3>
-      <p>
-        Estimate ideal life cover based on income and responsibilities.
-      </p>
-      <span class="coming-soon">Coming Soon</span>
-    </div>
-
-    <!-- GOAL -->
-    <div class="calculator-card">
-      <div class="calc-icon">🎯</div>
-      <h3>Goal Planning</h3>
-      <p>
-        Plan for retirement, education, or long-term financial goals.
-      </p>
-      <span class="coming-soon">Coming Soon</span>
-    </div>
-
-  </div>
-</section>
-<section class="calculator-section">
-  <div class="calculator-card">
-
+  <!-- STEP 1 : USER DETAILS -->
+  <div class="user-card" id="userForm">
     <h1>SIP Calculator</h1>
-    <p class="calc-subtitle">
-      Estimate how your monthly SIP investments can grow over time.
+    <p class="subtitle">
+      Enter your details to access the calculator.
     </p>
 
-    <!-- INPUTS -->
-    <div class="calc-grid">
-      <div class="calc-field">
-        <label>Monthly SIP Amount (₹)</label>
-        <input type="number" id="sipAmount" placeholder="e.g. 5000">
-      </div>
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <input type="tel" id="phone" placeholder="Mobile Number" required>
 
-      <div class="calc-field">
-        <label>Investment Duration (Years)</label>
-        <input type="number" id="sipYears" placeholder="e.g. 10">
-      </div>
+    <button onclick="enableCalculator()">
+      Continue to Calculator
+    </button>
+  </div>
 
-      <div class="calc-field">
-        <label>Expected Annual Return (%)</label>
-        <input type="number" id="sipReturn" placeholder="e.g. 12">
-      </div>
+  <!-- STEP 2 : CALCULATOR -->
+  <div class="calculator-card disabled" id="calculatorSection">
+
+    <div class="calc-toggle">
+      <button class="active" onclick="switchMode('sip')">SIP</button>
+      <button onclick="switchMode('lumpsum')">Lumpsum</button>
     </div>
 
-    <!-- BUTTON -->
-    <button class="calc-btn">Calculate SIP</button>
+    <div class="calc-fields">
+      <input type="number" id="amount" placeholder="Investment Amount (₹)">
+      <input type="number" id="years" placeholder="Duration (Years)">
+      <input type="number" id="rate" placeholder="Expected Return (%)">
+    </div>
+
+    <button class="calc-btn" onclick="calculate()">
+      Calculate
+    </button>
 
     <!-- RESULT -->
-    <div class="calc-result">
-      <p><strong>Total Invested:</strong> ₹0</p>
-      <p><strong>Estimated Returns:</strong> ₹0</p>
-      <p><strong>Final Corpus:</strong> ₹0</p>
+    <div class="result">
+      <p>Total Invested: ₹<span id="invested">0</span></p>
+      <p>Estimated Returns: ₹<span id="returns">0</span></p>
+      <p class="final">Final Corpus: ₹<span id="corpus">0</span></p>
     </div>
 
-    <!-- CTA -->
-    <a href="#contact" class="calc-cta">Talk to an Advisor</a>
+    <!-- CHART -->
+    <canvas id="chart"></canvas>
 
   </div>
+
 </section>
+
+</body>
+</html>
