@@ -227,49 +227,61 @@ h1 {
 </div>
 
 <script>
-let mode = "sip";
+  let investmentType = "sip";
 
-function unlockCalculator() {
-  document.getElementById("calculator").style.display = "block";
-}
+  function selectType(type) {
+    investmentType = type;
 
-function setMode(type) {
-  mode = type;
-  document.querySelectorAll(".toggle button").forEach(btn => btn.classList.remove("active"));
-  event.target.classList.add("active");
-}
+    document.getElementById("sipBtn").classList.remove("active");
+    document.getElementById("lumpBtn").classList.remove("active");
 
-function calculate() {
-  const amount = Number(amountInput.value = document.getElementById("amount").value);
-  const years = Number(document.getElementById("years").value);
-  const rate = Number(document.getElementById("rate").value) / 100 / 12;
-
-  let invested = 0, corpus = 0;
-
-  if (mode === "sip") {
-    const months = years * 12;
-    invested = amount * months;
-    corpus = amount * ((Math.pow(1 + rate, months) - 1) / rate) * (1 + rate);
-  } else {
-    invested = amount;
-    corpus = amount * Math.pow(1 + rate * 12, years);
+    if (type === "sip") {
+      document.getElementById("sipBtn").classList.add("active");
+    } else {
+      document.getElementById("lumpBtn").classList.add("active");
+    }
   }
 
-  const returns = corpus - invested;
+  function calculateInvestment() {
+    const amount = parseFloat(document.getElementById("amount").value);
+    const years = parseFloat(document.getElementById("years").value);
+    const rate = parseFloat(document.getElementById("rate").value);
 
-  investedEl.textContent = invested.toFixed(0);
-  returnsEl.textContent = returns.toFixed(0);
-  corpusEl.textContent = corpus.toFixed(0);
+    if (!amount || !years || !rate) {
+      alert("Please enter all values");
+      return;
+    }
 
-  const investedAngle = (invested / corpus) * 360;
-  document.getElementById("pie").style.background =
-    `conic-gradient(#0b3c5d 0deg ${investedAngle}deg, #e1e7ec ${investedAngle}deg 360deg)`;
-}
+    let totalInvested = 0;
+    let finalCorpus = 0;
 
-const investedEl = document.getElementById("invested");
-const returnsEl = document.getElementById("returns");
-const corpusEl = document.getElementById("corpus");
+    const monthlyRate = rate / 12 / 100;
+    const months = years * 12;
+
+    if (investmentType === "sip") {
+      totalInvested = amount * months;
+      finalCorpus =
+        amount *
+        ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) *
+        (1 + monthlyRate);
+    } else {
+      totalInvested = amount;
+      finalCorpus = amount * Math.pow(1 + rate / 100, years);
+    }
+
+    const returns = finalCorpus - totalInvested;
+
+    document.getElementById("invested").innerText =
+      "₹" + totalInvested.toFixed(0);
+
+    document.getElementById("returns").innerText =
+      "₹" + returns.toFixed(0);
+
+    document.getElementById("corpus").innerText =
+      "₹" + finalCorpus.toFixed(0);
+  }
 </script>
+
 
 </body>
 </html>
