@@ -217,3 +217,14 @@ body {
     justify-content: center;
   }
 }
+.home-link {
+  text-decoration: none;
+  color: #0b3c5d;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.home-link:hover {
+  text-decoration: underline;
+}
+
