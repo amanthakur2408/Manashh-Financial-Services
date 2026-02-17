@@ -1,388 +1,84 @@
 /* =========================
-   RESET & GLOBAL
+   CALCULATOR LANDING
 ========================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: Arial, sans-serif;
+.calculator-landing {
+  padding: 90px 20px;
   background: #f6f8fb;
-  color: #333;
-}
-
-/* =========================
-   HEADER / NAVBAR
-========================= */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 60px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-}
-
-.nav-left img {
-  height: 70px;
-  width: auto;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
-.nav-right a {
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 500;
-  color: #333;
-  position: relative;
-}
-
-.nav-right a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0;
-  height: 2px;
-  background: #0b3c5d;
-  transition: width 0.3s ease;
-}
-
-.nav-right a:hover::after {
-  width: 100%;
-}
-
-.nav-right a:hover {
-  color: #0b3c5d;
-}
-
-/* =========================
-   HERO
-========================= */
-.hero {
-  background: linear-gradient(135deg, #0b3c5d, #0e517a);
-  padding: 90px 40px;
-  color: #ffffff;
-}
-
-.hero-container {
-  max-width: 1200px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  align-items: center;
-  gap: 50px;
-}
-
-.hero-text h1 {
-  font-size: 44px;
-  margin-bottom: 12px;
-}
-
-.hero-subtitle {
-  font-size: 18px;
-  opacity: 0.9;
-  margin-bottom: 25px;
-}
-
-.hero-btn {
-  display: inline-block;
-  padding: 14px 38px;
-  background: #ffffff;
-  color: #0b3c5d;
-  border-radius: 30px;
-  font-weight: 600;
-  text-decoration: none;
-  margin-bottom: 25px;
-}
-
-.hero-tagline {
-  font-size: 16px;
-  margin-bottom: 25px;
-  opacity: 0.95;
-}
-
-.hero-trust {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px 30px;
-  font-size: 14.5px;
-}
-
-.hero-image img {
-  width: 100%;
-  max-width: 420px;
-  display: block;
-}
-
-/* =========================
-   SECTIONS
-========================= */
-.section {
-  padding: 80px 20px;
   text-align: center;
 }
 
-.section h2 {
-  font-size: 30px;
-  margin-bottom: 20px;
-  color: #0b3c5d;
-}
-
-.section p {
-  max-width: 800px;
-  margin: auto;
+.landing-subtitle {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  color: #555;
   font-size: 16px;
 }
 
-/* =========================
-   ABOUT
-========================= */
-.about-container {
+/* GRID */
+.calculator-grid {
   max-width: 1100px;
   margin: auto;
-  display: flex;
-  align-items: center;
-  gap: 40px;
-}
-
-.about-text {
-  flex: 1;
-  text-align: left;
-}
-
-.about-image img {
-  width: 100%;
-  border-radius: 12px;
-}
-
-/* =========================
-   SERVICES
-========================= */
-.services {
-  max-width: 1100px;
-  margin: 40px auto 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
-.service-box {
+/* CARD */
+.calculator-card {
   background: #ffffff;
-  padding: 22px;
-  border-radius: 12px;
+  padding: 35px 25px;
+  border-radius: 14px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.service-box img {
-  width: 100%;
-  height: 130px;
-  object-fit: cover;
-  border-radius: 8px;
+.calculator-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+}
+
+.calc-icon {
+  font-size: 36px;
   margin-bottom: 15px;
 }
 
-.service-box h3 {
-  font-size: 18px;
+.calculator-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
   color: #0b3c5d;
-  margin-bottom: 8px;
 }
 
-.service-box p {
+.calculator-card p {
   font-size: 14.5px;
   color: #555;
-  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
-/* =========================
-   WHY CHOOSE US
-========================= */
-.why-grid {
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-}
-
-.why-box {
-  background: #ffffff;
-  padding: 30px 20px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-
-.why-icon {
-  font-size: 34px;
-  margin-bottom: 15px;
-  display: block;
-}
-
-/* =========================
-   CONTACT
-========================= */
-.contact-subtext {
-  margin-bottom: 60px;
-  color: #555;
-  font-size: 16px;
-}
-
-.contact-container {
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.contact-image img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  object-position: center top;
-  border-radius: 12px;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  padding: 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-}
-
-.contact-form button {
-  padding: 14px 36px;
+/* LINK */
+.calc-link {
+  display: inline-block;
+  padding: 10px 26px;
   background: #0b3c5d;
   color: #ffffff;
-  border: none;
-  border-radius: 30px;
-  font-size: 16px;
+  border-radius: 25px;
+  text-decoration: none;
   font-weight: 600;
-  cursor: pointer;
-  width: fit-content;
 }
 
-.contact-form button:hover {
+.calc-link:hover {
   background: #0e517a;
 }
 
-.disclaimer {
-  margin-top: 10px;
-  font-size: 12px;
-  opacity: 0.85;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+/* COMING SOON */
+.coming-soon {
+  font-size: 13px;
+  color: #888;
+  font-weight: 600;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-footer {
-  background: #0b3c5d;
-  color: #ffffff;
-  text-align: center;
-  padding: 15px;
-  font-size: 14px;
-}
-
-/* =========================
-   WHATSAPP FLOAT
-========================= */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 55px;
-  height: 55px;
-  background: #25d366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-  z-index: 2000;
-}
-
-.whatsapp-float img {
-  width: 26px;
-  height: 26px;
-}
-
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 @media (max-width: 900px) {
-  .hero-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .hero-image img {
-    margin: 40px auto 0;
-  }
-
-  .hero-trust {
-    justify-content: center;
-  }
-
-  .about-container,
-  .contact-container {
+  .calculator-grid {
     grid-template-columns: 1fr;
   }
-
-  .services,
-  .why-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .navbar {
-    padding: 14px 25px;
-  }
-
-  .nav-left img {
-    height: 58px;
-  }
 }
-/* CONTACT SECTION SPACING FIX */
-#contact h2 {
-  margin-bottom: 16px;   /* space below heading */
-}
-
-.contact-subtext {
-  margin-top: 10px;
-  margin-bottom: 60px;  /* space before form & image */
-  font-size: 16px;
-  color: #555;
-}
-
-
-
