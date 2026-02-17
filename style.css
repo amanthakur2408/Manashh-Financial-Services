@@ -1,127 +1,152 @@
 /* =========================
-   CALCULATOR LANDING
+   RESET
 ========================= */
-.calculator-landing {
-  padding: 90px 20px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
   background: #f6f8fb;
-  text-align: center;
+  color: #333;
 }
 
 /* =========================
-   NAVBAR LOGO FIX (CALCULATOR PAGE ONLY)
+   GLOBAL IMAGE SAFETY
 ========================= */
-.calculator-page .nav-left img {
-  height: 56px;          /* fixed height */
-  width: auto;           /* maintain ratio */
-  max-width: 160px;      /* prevent overflow */
-  object-fit: contain;   /* no stretching */
+img {
+  max-width: 100%;
+  height: auto;
   display: block;
 }
 
 /* =========================
-   SUBTITLE
+   NAVBAR
 ========================= */
-.landing-subtitle {
-  margin-top: 10px;
-  margin-bottom: 50px;
-  color: #555;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-left img {
+  height: 70px;
+  width: auto;
+}
+
+.nav-right {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-right a {
+  text-decoration: none;
   font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  position: relative;
 }
 
 /* =========================
-   GRID
+   HERO
 ========================= */
-.calculator-grid {
-  max-width: 1100px;
+.hero {
+  background: linear-gradient(135deg, #0b3c5d, #0e517a);
+  padding: 90px 40px;
+  color: #ffffff;
+}
+
+.hero-container {
+  max-width: 1200px;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 50px;
+  align-items: center;
 }
 
-/* =========================
-   CARD
-========================= */
-.calculator-card {
+.hero-text h1 {
+  font-size: 44px;
+  margin-bottom: 12px;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.hero-btn {
+  padding: 14px 36px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.primary-btn {
   background: #ffffff;
-  padding: 35px 25px;
-  border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
-}
-
-.calculator-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
-}
-
-/* =========================
-   ICON
-========================= */
-.calc-icon {
-  font-size: 36px;
-  margin-bottom: 15px;
-}
-
-/* =========================
-   CARD TEXT
-========================= */
-.calculator-card h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
   color: #0b3c5d;
 }
 
-.calculator-card p {
-  font-size: 14.5px;
-  color: #555;
-  margin-bottom: 20px;
-  line-height: 1.6;
+.secondary-btn {
+  border: 2px solid #ffffff;
+  color: #ffffff;
 }
 
 /* =========================
-   LINK / BUTTON
+   SECTIONS
 ========================= */
-.calc-link {
-  display: inline-block;
-  padding: 10px 26px;
+.section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #0b3c5d;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
   background: #0b3c5d;
   color: #ffffff;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s ease;
-}
-
-.calc-link:hover {
-  background: #0e517a;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
 }
 
 /* =========================
-   COMING SOON
+   WHATSAPP
 ========================= */
-.coming-soon {
-  font-size: 13px;
-  color: #888;
-  font-weight: 600;
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-/* =========================
-   MOBILE
-========================= */
-@media (max-width: 900px) {
-  .calculator-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .calculator-landing {
-    padding: 60px 15px;
-  }
-
-  .calculator-page .nav-left img {
-    height: 50px;
-    max-width: 140px;
-  }
-}
-
