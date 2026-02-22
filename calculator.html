@@ -85,6 +85,7 @@ function switchCalculator() {
   const years = document.getElementById("years");
   const rate = document.getElementById("rate");
 
+  // Reset
   amount.value = "";
   years.value = "";
   rate.value = "";
@@ -97,7 +98,7 @@ function switchCalculator() {
   }
 
   if (type === "lumpsum") {
-    amount.placeholder = "Investment Amount (₹)";
+    amount.placeholder = "One-time Investment Amount (₹)";
     years.placeholder = "Investment Duration (Years)";
     rate.placeholder = "Expected Return (%)";
   }
@@ -108,6 +109,7 @@ function switchCalculator() {
     rate.placeholder = "Interest Rate (%)";
   }
 }
+</script>
 
 function calculate() {
   const type = document.getElementById("calcType").value;
