@@ -41,7 +41,35 @@
         Final Corpus: ₹<span id="corpus">0</span>
       </p>
     </div>
+<!-- LEAD FORM -->
+<div class="lead-box" id="leadBox" style="display:none; margin-top:25px;">
+  <h3>Get Your SIP Plan Reviewed by an Expert</h3>
+  <p style="font-size:14px; color:#555;">
+    Share your details & we’ll help you optimize your investment.
+  </p>
 
+  <form id="clientForm">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="tel" name="mobile" placeholder="Mobile Number" required>
+    <input type="email" name="email" placeholder="Email (Optional)">
+    <input type="text" name="city" placeholder="City">
+
+    <!-- Hidden Calculation Data -->
+    <input type="hidden" name="calculatorType" value="SIP">
+    <input type="hidden" name="monthlyAmount" id="h_amount">
+    <input type="hidden" name="years" id="h_years">
+    <input type="hidden" name="rate" id="h_rate">
+    <input type="hidden" name="totalInvested" id="h_invested">
+    <input type="hidden" name="totalReturns" id="h_returns">
+    <input type="hidden" name="finalCorpus" id="h_corpus">
+
+    <button type="submit">📞 Request Callback</button>
+  </form>
+
+  <p style="font-size:12px; margin-top:10px; color:#777;">
+    🔒 We respect your privacy. No spam.
+  </p>
+</div>
     <!-- PIE -->
    <div class="pie" id="pie"></div>
 
