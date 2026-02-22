@@ -1,59 +1,95 @@
-let mode = "sip";
+/* ===============================
+   SIP CALCULATOR LOGIC
+================================ */
 
-function enableCalculator() {
-  document.getElementById("calculatorSection").classList.remove("disabled");
-}
-
-function switchMode(selected) {
-  mode = selected;
-  document.querySelectorAll(".calc-toggle button").forEach(btn => btn.classList.remove("active"));
-  event.target.classList.add("active");
-}
-
-function calculate() {
+function calculateSIP() {
   const amount = Number(document.getElementById("amount").value);
   const years = Number(document.getElementById("years").value);
-  const rate = Number(document.getElementById("rate").value) / 100 / 12;
+  const rate = Number(document.getElementById("rate").value);
 
-  let invested = 0, corpus = 0;
-
-  if (mode === "sip") {
-    const months = years * 12;
-    invested = amount * months;
-    corpus = amount * ((Math.pow(1 + rate, months) - 1) / rate) * (1 + rate);
-  } else {
-    invested = amount;
-    corpus = amount * Math.pow(1 + rate * 12, years);
+  if (!amount || !years || !rate) {
+    alert("Please enter all values");
+    return;
   }
 
-  document.getElementById("invested").innerText = invested.toFixed(0);
-  document.getElementById("corpus").innerText = corpus.toFixed(0);
-  document.getElementById("returns").innerText = (corpus - invested).toFixed(0);
+  const monthlyRate = rate / 100 / 12;
+  const months = years * 12;
 
-  drawChart(invested, corpus - invested);
+  const corpus =
+    amount *
+    ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) *
+    (1 + monthlyRate);
+
+  const invested = amount * months;
+  const returns = corpus - invested;
+
+  // Show values
+  document.getElementById("invested").innerText =
+    Math.round(invested).toLocaleString();
+
+  document.getElementById("returns").innerText =
+    Math.round(returns).toLocaleString();
+
+  document.getElementById("corpus").innerText =
+    Math.round(corpus).toLocaleString();
+
+  // Pie chart
+  const investedAngle = (invested / corpus) * 360;
+  document.getElementById("pie").style.background =
+    `conic-gradient(
+      #0b3c5d 0deg ${investedAngle}deg,
+      #e1e7ec ${investedAngle}deg 360deg
+    )`;
+
+  // Fill hidden fields for backend
+  document.getElementById("h_amount").value = amount;
+  document.getElementById("h_years").value = years;
+  document.getElementById("h_rate").value = rate;
+  document.getElementById("h_invested").value = Math.round(invested);
+  document.getElementById("h_returns").value = Math.round(returns);
+  document.getElementById("h_corpus").value = Math.round(corpus);
+
+  document.getElementById("result").style.display = "block";
+  document.getElementById("leadBox").style.display = "block";
 }
 
-/* PIE CHART */
-function drawChart(invested, returns) {
-  const canvas = document.getElementById("chart");
-  const ctx = canvas.getContext("2d");
-  canvas.width = 250;
-  canvas.height = 250;
+/* ===============================
+   LEAD FORM SUBMISSION
+================================ */
 
-  const total = invested + returns;
-  const investAngle = (invested / total) * 2 * Math.PI;
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("clientForm");
 
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+  if (!form) return;
 
-  ctx.beginPath();
-  ctx.moveTo(125,125);
-  ctx.fillStyle = "#0b3c5d";
-  ctx.arc(125,125,100,0,investAngle);
-  ctx.fill();
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  ctx.beginPath();
-  ctx.moveTo(125,125);
-  ctx.fillStyle = "#4caf50";
-  ctx.arc(125,125,100,investAngle,2*Math.PI);
-  ctx.fill();
-}
+    const formData = Object.fromEntries(
+      new FormData(form).entries()
+    );
+
+    try {
+      const response = await fetch("/api/save-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert("Thank you! Our advisor will contact you shortly.");
+        form.reset();
+      } else {
+        alert("Failed to save details. Please try again.");
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("Server error. Please try later.");
+    }
+  });
+});
