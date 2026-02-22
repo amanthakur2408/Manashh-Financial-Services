@@ -252,10 +252,10 @@ img {
 }
 
 /* =========================
-   CONTACT
+   CONTACT (FINAL – WHATSAPP ONLY)
 ========================= */
 .contact-subtext {
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   color: #555;
 }
 
@@ -264,7 +264,7 @@ img {
   margin: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 50px;
   align-items: center;
 }
 
@@ -274,32 +274,61 @@ img {
   height: 320px;
   object-fit: cover;
   object-position: center top;
-  border-radius: 12px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.contact-content {
+  text-align: left;
+  max-width: 460px;
 }
 
-.contact-form input,
-.contact-form textarea {
-  padding: 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+.contact-content h3 {
+  font-size: 28px;
+  margin-bottom: 14px;
+  color: #0b3c5d;
+}
+
+.contact-content p {
   font-size: 15px;
+  line-height: 1.6;
+  color: #444;
 }
 
-.contact-form button {
-  padding: 14px 36px;
-  background: #0b3c5d;
+.contact-points {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.contact-points li {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #333;
+}
+
+.whatsapp-contact-btn {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #25d366, #1ebe5d);
   color: #ffffff;
-  border: none;
-  border-radius: 30px;
-  font-size: 16px;
+  text-decoration: none;
   font-weight: 600;
-  cursor: pointer;
+  border-radius: 30px;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-contact-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(37, 211, 102, 0.45);
+}
+
+.privacy-note {
+  font-size: 13px;
+  margin-top: 12px;
+  color: #777;
 }
 
 /* =========================
@@ -362,6 +391,10 @@ footer {
   .about-image img,
   .contact-image img {
     margin: auto;
+  }
+
+  .contact-content {
+    text-align: center;
   }
 
   .navbar {
