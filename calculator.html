@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SIP Calculator | Manashh Financial Services</title>
+<title>Financial Calculator | Manashh Financial Services</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="calculator.css">
@@ -19,157 +19,153 @@
 <!-- CONTENT -->
 <div class="container">
   <div class="card">
-    <h1>SIP Calculator</h1>
-    <p>Enter details to calculate your investment returns.</p>
-    
-<label for="calcType"><strong>Select Calculator</strong></label>
-<select id="calcType" onchange="switchCalculator()">
-  <option value="sip">SIP Calculator</option>
-  <option value="lumpsum">Lumpsum Calculator</option>
-  <option value="emi">EMI Calculator</option>
-</select>
+    <h1>Financial Calculator</h1>
+    <p>Select a calculator and enter details.</p>
+
+    <!-- DROPDOWN -->
+    <label for="calcType"><strong>Select Calculator</strong></label>
+    <select id="calcType" onchange="switchCalculator()">
+      <option value="sip">SIP Calculator</option>
+      <option value="lumpsum">Lumpsum Calculator</option>
+      <option value="emi">EMI Calculator</option>
+    </select>
+
     <!-- INPUTS -->
     <div class="calculator">
       <input type="number" id="amount" placeholder="Monthly Investment (₹)">
       <input type="number" id="years" placeholder="Investment Duration (Years)">
       <input type="number" id="rate" placeholder="Expected Return (%)">
 
-      <button onclick="calculateSIP()">Calculate</button>
+      <button onclick="calculate()">Calculate</button>
 
       <!-- RESULT -->
-     <div class="result" id="result" style="margin-top:20px; display:none;">
-  <div class="result-grid">
+      <div class="result" id="result" style="margin-top:20px; display:none;">
+        <div class="result-grid">
 
-    <div>
-      <p>Total Invested: ₹<span id="invested">0</span></p>
-      <p>Estimated Returns: ₹<span id="returns">0</span></p>
-      <p style="font-size:20px;font-weight:600;color:#0b3c5d;">
-        Final Corpus: ₹<span id="corpus">0</span>
-      </p>
-    </div>
-<!-- LEAD FORM -->
-<div class="lead-box" id="leadBox" style="display:none; margin-top:25px;">
-  <h3>Get Your SIP Plan Reviewed by an Expert</h3>
-  <p style="font-size:14px; color:#555;">
-    Share your details & we’ll help you optimize your investment.
-  </p>
+          <div>
+            <p>Total Invested / Principal: ₹<span id="invested">0</span></p>
+            <p>Returns / Interest: ₹<span id="returns">0</span></p>
+            <p style="font-size:20px;font-weight:600;color:#0b3c5d;">
+              Final Amount: ₹<span id="corpus">0</span>
+            </p>
 
-  <form id="clientForm">
-    <input type="text" name="name" placeholder="Full Name" required>
-    <input type="tel" name="mobile" placeholder="Mobile Number" required>
-    <input type="email" name="email" placeholder="Email (Optional)">
-    <!-- Hidden Calculation Data -->
-    <input type="hidden" name="calculatorType" value="SIP">
-    <input type="hidden" name="monthlyAmount" id="h_amount">
-    <input type="hidden" name="years" id="h_years">
-    <input type="hidden" name="rate" id="h_rate">
-    <input type="hidden" name="totalInvested" id="h_invested">
-    <input type="hidden" name="totalReturns" id="h_returns">
-    <input type="hidden" name="finalCorpus" id="h_corpus">
+            <!-- WHATSAPP -->
+            <div style="margin-top:15px;">
+              <button onclick="connectWhatsApp()" class="whatsapp-btn">
+                💬 Connect with Us on WhatsApp
+              </button>
+            </div>
+          </div>
 
-    <button type="submit">📞 Request Callback</button>
-  </form>
+          <!-- PIE -->
+          <div>
+            <div class="pie" id="pie"></div>
 
-  <p style="font-size:12px; margin-top:10px; color:#777;">
-    🔒 We respect your privacy. No spam.
-  </p>
-</div>
-    <!-- PIE -->
-   <div class="pie" id="pie"></div>
+            <div class="pie-legend">
+              <div class="legend-item">
+                <span class="legend-color invest"></span> Investment
+              </div>
+              <div class="legend-item">
+                <span class="legend-color return"></span> Returns
+              </div>
+            </div>
+          </div>
 
-<div class="pie-legend">
-  <div class="legend-item">
-    <span class="legend-color invest"></span> Investment
-  </div>
-  <div class="legend-item">
-    <span class="legend-color return"></span> Returns
-  </div>
-</div>
-
-
-  </div>
-</div>
+        </div>
+      </div>
 
     </div>
   </div>
 </div>
 
+<!-- SCRIPT -->
 <script>
-function calculateSIP() {
-  const amount = Number(document.getElementById("amount").value);
-  const years = Number(document.getElementById("years").value);
-  const rate = Number(document.getElementById("rate").value);
+function switchCalculator() {
+  const type = document.getElementById("calcType").value;
+  const amount = document.getElementById("amount");
+  const years = document.getElementById("years");
+  const rate = document.getElementById("rate");
+
+  amount.value = "";
+  years.value = "";
+  rate.value = "";
+  document.getElementById("result").style.display = "none";
+
+  if (type === "sip") {
+    amount.placeholder = "Monthly Investment (₹)";
+    years.placeholder = "Investment Duration (Years)";
+    rate.placeholder = "Expected Return (%)";
+  }
+
+  if (type === "lumpsum") {
+    amount.placeholder = "Investment Amount (₹)";
+    years.placeholder = "Investment Duration (Years)";
+    rate.placeholder = "Expected Return (%)";
+  }
+
+  if (type === "emi") {
+    amount.placeholder = "Loan Amount (₹)";
+    years.placeholder = "Loan Tenure (Years)";
+    rate.placeholder = "Interest Rate (%)";
+  }
+}
+
+function calculate() {
+  const type = document.getElementById("calcType").value;
+  const amount = +document.getElementById("amount").value;
+  const years = +document.getElementById("years").value;
+  const rate = +document.getElementById("rate").value;
 
   if (!amount || !years || !rate) {
     alert("Please enter all values");
     return;
   }
 
-  const monthlyRate = rate / 100 / 12;
-  const months = years * 12;
+  let invested = 0, returns = 0, total = 0;
 
-  const corpus =
-    amount *
-    ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) *
-    (1 + monthlyRate);
+  if (type === "sip") {
+    const r = rate / 100 / 12;
+    const n = years * 12;
+    total = amount * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+    invested = amount * n;
+    returns = total - invested;
+  }
 
-  const invested = amount * months;
-  const returns = corpus - invested;
+  if (type === "lumpsum") {
+    total = amount * Math.pow(1 + rate / 100, years);
+    invested = amount;
+    returns = total - invested;
+  }
 
-  // Display results
-  document.getElementById("invested").innerText =
-    Math.round(invested).toLocaleString();
+  if (type === "emi") {
+    const r = rate / 12 / 100;
+    const n = years * 12;
+    const emi = (amount * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    total = emi * n;
+    invested = amount;
+    returns = total - invested;
+  }
 
-  document.getElementById("returns").innerText =
-    Math.round(returns).toLocaleString();
+  document.getElementById("invested").innerText = Math.round(invested).toLocaleString();
+  document.getElementById("returns").innerText = Math.round(returns).toLocaleString();
+  document.getElementById("corpus").innerText = Math.round(total).toLocaleString();
 
-  document.getElementById("corpus").innerText =
-    Math.round(corpus).toLocaleString();
-
-  // Pie chart
-  const investedAngle = (invested / corpus) * 360;
+  const angle = (invested / total) * 360;
   document.getElementById("pie").style.background =
-    `conic-gradient(
-      #0b3c5d 0deg ${investedAngle}deg,
-      #e1e7ec ${investedAngle}deg 360deg
-    )`;
-
-  // Fill hidden form values
-  document.getElementById("h_amount").value = amount;
-  document.getElementById("h_years").value = years;
-  document.getElementById("h_rate").value = rate;
-  document.getElementById("h_invested").value = Math.round(invested);
-  document.getElementById("h_returns").value = Math.round(returns);
-  document.getElementById("h_corpus").value = Math.round(corpus);
+    `conic-gradient(#0b3c5d 0deg ${angle}deg, #e1e7ec ${angle}deg 360deg)`;
 
   document.getElementById("result").style.display = "block";
-  document.getElementById("leadBox").style.display = "block";
 }
 
-/* SUBMIT LEAD */
-document.getElementById("clientForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const formData = Object.fromEntries(
-    new FormData(this).entries()
+function connectWhatsApp() {
+  const phone = "91XXXXXXXXXX"; // 👉 replace with your WhatsApp number
+  const msg = "Hello, I used your financial calculator and would like expert guidance.";
+  window.open(
+    `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,
+    "_blank"
   );
-
-  try {
-    const res = await fetch("/api/save-lead", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData)
-    });
-
-    const data = await res.json();
-
-    alert("Thank you! Our advisor will contact you shortly.");
-    this.reset();
-
-  } catch (err) {
-    alert("Something went wrong. Please try again.");
-  }
-});
+}
 </script>
+
 </body>
 </html>
