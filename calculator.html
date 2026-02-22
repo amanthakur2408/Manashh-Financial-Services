@@ -21,7 +21,13 @@
   <div class="card">
     <h1>SIP Calculator</h1>
     <p>Enter details to calculate your investment returns.</p>
-
+    
+<label for="calcType"><strong>Select Calculator</strong></label>
+<select id="calcType" onchange="switchCalculator()">
+  <option value="sip">SIP Calculator</option>
+  <option value="lumpsum">Lumpsum Calculator</option>
+  <option value="emi">EMI Calculator</option>
+</select>
     <!-- INPUTS -->
     <div class="calculator">
       <input type="number" id="amount" placeholder="Monthly Investment (₹)">
