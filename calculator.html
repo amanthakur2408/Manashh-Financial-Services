@@ -112,7 +112,7 @@ function calculateSIP() {
   const invested = amount * months;
   const returns = corpus - invested;
 
-  // TEXT OUTPUT
+  // Display results
   document.getElementById("invested").innerText =
     Math.round(invested).toLocaleString();
 
@@ -122,18 +122,50 @@ function calculateSIP() {
   document.getElementById("corpus").innerText =
     Math.round(corpus).toLocaleString();
 
-  // 🔥 PIE CHART LOGIC (THIS WAS MISSING)
+  // Pie chart
   const investedAngle = (invested / corpus) * 360;
-
   document.getElementById("pie").style.background =
     `conic-gradient(
       #0b3c5d 0deg ${investedAngle}deg,
       #e1e7ec ${investedAngle}deg 360deg
     )`;
 
-  document.getElementById("result").style.display = "block";
-}
-</script>
+  // Fill hidden form values
+  document.getElementById("h_amount").value = amount;
+  document.getElementById("h_years").value = years;
+  document.getElementById("h_rate").value = rate;
+  document.getElementById("h_invested").value = Math.round(invested);
+  document.getElementById("h_returns").value = Math.round(returns);
+  document.getElementById("h_corpus").value = Math.round(corpus);
 
+  document.getElementById("result").style.display = "block";
+  document.getElementById("leadBox").style.display = "block";
+}
+
+/* SUBMIT LEAD */
+document.getElementById("clientForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const formData = Object.fromEntries(
+    new FormData(this).entries()
+  );
+
+  try {
+    const res = await fetch("/api/save-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await res.json();
+
+    alert("Thank you! Our advisor will contact you shortly.");
+    this.reset();
+
+  } catch (err) {
+    alert("Something went wrong. Please try again.");
+  }
+});
+</script>
 </body>
 </html>
