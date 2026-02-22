@@ -111,6 +111,33 @@ function switchCalculator() {
 }
 </script>
 
+<script>
+function switchCalculator() {
+  const type = document.getElementById("calcType").value;
+  const amount = document.getElementById("amount");
+  const years = document.getElementById("years");
+  const rate = document.getElementById("rate");
+
+  amount.value = "";
+  years.value = "";
+  rate.value = "";
+  document.getElementById("result").style.display = "none";
+
+  if (type === "sip") {
+    amount.placeholder = "Monthly Investment (₹)";
+    years.placeholder = "Investment Duration (Years)";
+    rate.placeholder = "Expected Return (%)";
+  } else if (type === "lumpsum") {
+    amount.placeholder = "One-time Investment Amount (₹)";
+    years.placeholder = "Investment Duration (Years)";
+    rate.placeholder = "Expected Return (%)";
+  } else if (type === "emi") {
+    amount.placeholder = "Loan Amount (₹)";
+    years.placeholder = "Loan Tenure (Years)";
+    rate.placeholder = "Interest Rate (%)";
+  }
+}
+
 function calculate() {
   const type = document.getElementById("calcType").value;
   const amount = +document.getElementById("amount").value;
@@ -130,15 +157,11 @@ function calculate() {
     total = amount * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
     invested = amount * n;
     returns = total - invested;
-  }
-
-  if (type === "lumpsum") {
+  } else if (type === "lumpsum") {
     total = amount * Math.pow(1 + rate / 100, years);
     invested = amount;
     returns = total - invested;
-  }
-
-  if (type === "emi") {
+  } else if (type === "emi") {
     const r = rate / 12 / 100;
     const n = years * 12;
     const emi = (amount * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
@@ -166,7 +189,7 @@ function connectWhatsApp() {
     "_blank"
   );
 }
-</script>
 
-</body>
-</html>
+// Initialize placeholders on load
+window.onload = switchCalculator;
+</script>
